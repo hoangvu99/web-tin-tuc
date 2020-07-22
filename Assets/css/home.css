@@ -1,0 +1,301 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+}
+body{
+    background: #f4f4f4;
+}
+.navbar{
+    width: 100%;
+    height: 250px;
+
+    padding: 0;
+}
+.navbar-head{
+    width: 100%;
+    height: 150px;
+    background-image: url("/webtintuc/Assets/images/navbar-header-bg.jpg");
+    background-repeat:no-repeat ;
+    background-size: cover;
+    background-position: center;
+    padding: 25px;
+
+}
+.navbar-head h1{
+    color: #fff;
+}
+.navigation-bar{
+    width: 100%;
+    height: 50px;
+}
+.navigation-bar {
+    background: #c80000;
+}
+.navigation-bar .navbar-main{
+    width: 100%;
+    height: 50px;
+    padding: 0 50px;
+}
+.navigation-bar ul li{
+    height: 50px;
+    padding: 15px 15px;
+    display: inline-block;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+}
+.navigation-bar li:hover {
+    background: #b80b2b;
+}
+.main-section {
+    width: 100%;
+    height: 930px;
+}
+
+
+.main-section .main {
+    margin-bottom: 20px;
+}
+
+.main-section .main-stories , .main-section .trending-stories{
+    height: 600px;
+}
+
+.main-stories .main-stories-title {
+    height: 5%;
+}
+.main-stories .main-stories-content {
+    height: 90%;
+    background: #fff;
+
+}
+.main-stories .container.row{
+    margin: 0;
+
+}
+.carousel-item img{
+    width: 540px;
+    height: 540px;
+}
+.carousel-caption .tag{
+    background: red;
+    color: #fff;
+}
+.carousel-caption h5{
+    font-weight: 700;
+}
+.carousel-item .carousel-caption{
+    width: 500px;
+    left: 3%;
+    bottom: 0;
+    padding: 20px 0 0 0 ;
+    text-align: left;
+}
+
+.trending-stories .trending-stories-title {
+    height: 5%;
+}
+.trending-stories .trending-stories-content {
+    height: 90%;
+
+}
+.main-section .grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+.grid-container .item-1{
+    padding: 0 5px 5px 0;
+
+}
+.grid-container .item-2{
+    padding: 0 0 5px 5px;
+
+}
+.grid-container .item-3{
+    padding: 5px 5px 0 0;
+
+}
+.grid-container .item-4{
+    padding: 5px 0 0 5px;
+
+}
+.grid-item {
+    position: relative;
+}
+.grid-item .content{
+
+    position: absolute;
+    top: 70%;
+    left: 3%;
+}
+.grid-item .tag {
+    background: red;
+    color: #fff;
+}
+.grid-item h5 {
+    font-weight: 700;
+    color: #fff;
+}
+.grid-item img {
+    width: 100%;
+    height: 100%;
+}
+
+.main-section .popular{
+    width: 100%;
+    height: 250px;
+    margin: 0;
+}
+.popular .post-item{
+    margin: 0;
+    padding: 0;
+    position: relative;
+
+}
+.popular .image{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.popular img{
+    width: 100%;
+    height: 100%;
+}
+.popular .content{
+    position: absolute;
+    top: 70%;
+    left: 3%;
+}
+.popular  .tag{
+    background: red;
+    color: #fff;
+}
+.popular h5{
+    font-weight: 700;
+    color: #fff;
+}
+.popular .po1 {
+    padding-right: 7.5px;
+}
+.popular .po2 {
+    padding-left: 2.5px;
+    padding-right: 5px;
+}
+.popular .po3 {
+    padding-left: 5px;
+    padding-right: 2.5px;
+}
+.popular .po4{
+    padding-left: 7.5px;
+}
+.second-section {
+    width: 100%;
+    height: 800px;
+}
+.second-section .technology,
+.second-section .fashion,
+.second-section .sport{
+    width: 100%;
+    height: 500px;
+    display: flex;
+    margin-bottom: 10px;
+}
+.second-section .main-post,
+.second-section .posts{
+
+    width: 50%;
+    height: 100%;
+}
+.main-post {
+    overflow: hidden;
+    background: #fff;
+}
+.main-post .content{
+    padding: 10px;
+    height: 252.5px;
+}
+.main-post img{
+    width: 100%;
+    margin-bottom: 10px;
+    transition: transform .5s ease;
+
+}
+.main-post .tag {
+    text-transform: uppercase;
+    color: red;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 5px;
+
+}
+.main-post .title{
+
+}
+.main-post .author {
+    float: right;
+    margin-right: 10px;
+}
+.author a{
+    text-decoration: none;
+    color: pink;
+}
+.main-post img:hover{
+    transform: scale(1.1);
+}
+.posts{
+    padding-left: 10px;
+
+}
+.posts .post-item {
+    width: 100%;
+    height: 25%;
+    display: flex;
+    padding: 10px;
+
+    background: #fff;
+
+}
+.post-item{
+    overflow: hidden;
+}
+
+.post-item .post-content{
+    padding:10px;
+}
+.post-item .post-content .tag {
+    text-transform: uppercase;
+    color: red;
+    font-weight: 600;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+.post-item .post-content .title{
+    font-size: 15px;
+}
+.post-item img:hover{
+    transform: scale(1.2);
+}
+.post-item .post-image{
+    width: 153px;
+    height: 105px;
+    overflow: hidden;
+}
+.post-image img{
+    transition: transform .5s ease;
+    width: 100%;
+    height: 100%;
+
+}
+.second-section .box2 {
+    padding-left: 0;
+}
+.box2 .top-story , .box2 .best-story , .box2 .top-author {
+    width: 100%;
+    height: 31%;
+    margin-bottom: 50px;
+    background: #fff;
+}
+
