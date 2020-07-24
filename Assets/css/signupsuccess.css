@@ -1,0 +1,131 @@
+*{
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+body{
+    background: #f4f4f4;
+}
+.navbar{
+    width: 100%;
+    height: 250px;
+    padding: 0;
+}
+.navbar-head{
+    width: 100%;
+    height: 150px;
+    background-image: url("/web-tin-tuc/Assets/images/navbar-header-bg.jpg");
+    background-repeat:no-repeat ;
+    background-size: cover;
+    background-position: center;
+    padding: 25px;
+
+}
+.navbar-head h1{
+    color: #fff;
+}
+.navigation-bar{
+    width: 100%;
+    height: 50px;
+    background: #c80000;
+    transition: transform .5s ease;
+
+}
+
+
+.navigation-bar .navbar-main{
+    width: 100%;
+    height: 50px;
+    padding: 0 50px;
+    position: relative;
+}
+
+.navigation-bar .form-box,
+.navigation-bar .noti-box ,
+.navigation-bar .user-box {
+    width: 330px;
+    height: 400px;
+    position: absolute;
+    z-index: 1;
+    background: #fff;
+
+
+}
+.navigation-bar .buttons {
+    position: absolute;
+    top: 0;
+    right: 3%;
+}
+.noti , .user ,.form-login{
+    width: 100%;
+    height: 350px;
+
+    padding: 10px;
+
+}
+.noti-box {
+    top: 100%;
+    right: 7%;
+    opacity: 0;
+}
+.noti-box .icon-box {
+    padding-left: 85%;
+}
+
+.user-box {
+    opacity: 0;
+    top: 100%;
+    right: 3%;
+}
+.form-box {
+    top: 100%;
+    right: 3%;
+    opacity: 0;
+}
+.user-box .icon-box{
+    height: 50px;
+    padding-left: 85%;
+}
+
+.navigation-bar .btn-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #b80b2b;
+
+}
+.navigation-bar .btn i {
+    color: #fff;
+    font-size: 20px;
+}
+.new-noti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border-radius: 50%;
+    top: 23%;
+    right: 7.4%;
+    z-index: 1;
+}
+.navigation-bar ul li{
+    height: 50px;
+    padding: 15px 15px;
+    display: inline-block;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+}
+.navigation-bar li:hover {
+    background: #b80b2b;
+}
+.show{
+    opacity: 1 !important;
+}
+.col-lg-12{
+    padding-top: 50px;
+    background: #fff;
+    text-align: center;
+}

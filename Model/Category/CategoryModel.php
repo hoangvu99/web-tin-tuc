@@ -1,7 +1,6 @@
 <?php
-
-include SYSTEM_PATH."/Model/BaseModel.php";
-include SYSTEM_PATH."/Model/Category/Category.php";
+include_once SYSTEM_PATH."/Model/BaseModel.php";
+include_once SYSTEM_PATH."/Model/Category/Category.php";
 class CategoryModel extends BaseModel {
 
     public function __construct()

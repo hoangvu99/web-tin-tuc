@@ -9,7 +9,6 @@ class BaseModel{
 
     function excuteQuery($query){
         $result = $this->mysqli->query($query);
-
         return $result;
 }
 }

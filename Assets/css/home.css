@@ -10,13 +10,12 @@ body{
 .navbar{
     width: 100%;
     height: 250px;
-
     padding: 0;
 }
 .navbar-head{
     width: 100%;
     height: 150px;
-    background-image: url("/webtintuc/Assets/images/navbar-header-bg.jpg");
+    background-image: url("/web-tin-tuc/Assets/images/navbar-header-bg.jpg");
     background-repeat:no-repeat ;
     background-size: cover;
     background-position: center;
@@ -29,14 +28,86 @@ body{
 .navigation-bar{
     width: 100%;
     height: 50px;
-}
-.navigation-bar {
     background: #c80000;
+    transition: transform .5s ease;
+
 }
+
+
 .navigation-bar .navbar-main{
     width: 100%;
     height: 50px;
     padding: 0 50px;
+    position: relative;
+}
+
+.navigation-bar .form-box,
+.navigation-bar .noti-box ,
+.navigation-bar .user-box {
+    width: 330px;
+    height: 400px;
+    position: absolute;
+    z-index: 1;
+    background: #fff;
+
+
+}
+.navigation-bar .buttons {
+    position: absolute;
+    top: 0;
+    right: 3%;
+}
+.noti , .user ,.form-login{
+    width: 100%;
+    height: 350px;
+
+    padding: 10px;
+
+}
+.noti-box {
+    top: 100%;
+    right: 7%;
+    opacity: 0;
+}
+.noti-box .icon-box {
+    padding-left: 85%;
+}
+
+.user-box {
+    opacity: 0;
+    top: 100%;
+    right: 3%;
+}
+.form-box {
+    top: 100%;
+    right: 3%;
+    opacity: 0;
+}
+.user-box .icon-box{
+    height: 50px;
+    padding-left: 85%;
+}
+
+.navigation-bar .btn-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #b80b2b;
+
+}
+.navigation-bar .btn i {
+    color: #fff;
+    font-size: 20px;
+}
+.new-noti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border-radius: 50%;
+    top: 23%;
+    right: 7.4%;
+    z-index: 1;
 }
 .navigation-bar ul li{
     height: 50px;
@@ -49,6 +120,70 @@ body{
 }
 .navigation-bar li:hover {
     background: #b80b2b;
+}
+.form-login h5 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.form-login .form-control {
+    margin-bottom: 20px;
+}
+.show{
+
+   opacity: 1 !important;
+}
+.user .user-profile{
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    border-bottom: 2px solid #d3d9df;
+}
+.user .user-custorm{
+    display: flex;
+    padding: 10px;
+    height: 70px;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    margin-bottom: 10px;
+}
+.user-custorm .content {
+    height: 25px;
+    padding-left: 20px;
+}
+.user-custorm .box-icon {
+    width: 24px;
+    height: 24px;
+}
+.box-icon i {
+    font-size: 25px;
+}
+.user-profile .content {
+    height: 65px;
+    padding-top: 10px;
+    padding-left: 10px;
+
+}
+.user-profile .content h5 {
+    margin-bottom: 0;
+}
+.user :hover {
+    background: #edf0ee;
+}
+.user-profile img {
+    width: 25%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
+.fix {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
 }
 .main-section {
     width: 100%;
@@ -193,7 +328,7 @@ body{
 }
 .second-section {
     width: 100%;
-    height: 800px;
+    height: 1600px;
 }
 .second-section .technology,
 .second-section .fashion,
@@ -297,5 +432,52 @@ body{
     height: 31%;
     margin-bottom: 50px;
     background: #fff;
+}
+.seen-post {
+    width: 100%;
+    height: 440px;
+    padding-top: 20px;
+
+}
+.seen-post .row{
+    margin-left: 0;
+    margin-right: 0;
+}
+.seen-post .post-item{
+    padding: 10px;
+    height: 350px;
+    background: #fff;
+}
+.seen-post .image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+.seen-post img {
+    width: 100%;
+    height: 100%;
+}
+.seen-post .content {
+    padding-left: 10px;
+    padding-top: 20px;
+}
+.seen-post .tag {
+    background: red;
+    color:#fff;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.seen-post h5 {
+    font-weight: 600;
+}
+.footer {
+    width: 100%;
+    height: 400px;
+    background: #393939;
+    color: #bbb;
+    padding-top: 50px;
+}
+.footer .cate {
+    column-count: 2;
 }
 

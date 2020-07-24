@@ -16,7 +16,6 @@
 
     <nav class="navbar navbar-expand-lg d-block">
         <div class="navbar-head">
-
             <div class="container">
                 <div class="row ">
                     <div class="col-lg-4">
@@ -25,7 +24,8 @@
                 </div>
             </div>
         </div>
-        <div class="navigation-bar">
+        <div class="navigation-bar" id="navigation-bar">
+
            <div class="navbar-main">
                <div class="container-fluid">
                    <div class="row">
@@ -45,7 +45,87 @@
                        </ul>
                    </div>
                </div>
+
+
+                  <?php
+                    if(isset($_COOKIE['name'])){
+                        ?>
+                        <div class="new-noti"></div>
+                        <div class="buttons">
+                            <button class="btn-icon  btn" id="btn-noti"> <i class="fas fa-bell"></i></button>
+
+                            <button class="btn-icon  btn" id="btn-user"> <i class="fas fa-user"></i></button>
+
+                        </div>
+                        <div class="noti-box" id="noti-box">
+
+
+                            <div class="noti" >
+                                noti
+                            </div>
+
+                        </div>
+                        <div class="user-box" id="user-box">
+                            <div class="user">
+                                <a href="http://localhost/web-tin-tuc/index.php?c=User&a=profile&userId=<?=$_COOKIE['id']?>" class="user-profile">
+                                    <img src="Assets/images/<?= $_COOKIE['avatar']?>" alt="" class="avatar">
+                                    <div class="content">
+                                        <h5 class="name"><?=$_COOKIE['name']?></h5>
+                                        <p>Xem trang cá nhân của bạn</p>
+                                    </div>
+                                </a>
+
+                                <a href="http://localhost/web-tin-tuc/index.php?c=User&a=doLogout" class="user-custorm">
+                                    <div class="box-icon">
+                                        <i class="fas fa-sign-out-alt"></i>
+                                    </div>
+                                    <div class="content">Đăng xuất</div>
+                                </a>
+                                <?php
+                                    if($_COOKIE['role'] == "ADMIN" && isset($_COOKIE['role'])){
+                                        ?>
+                                        <a href="http://localhost/web-tin-tuc/index.php?c=User&a=doLogout" class="user-custorm">
+                                            <div class="box-icon">
+                                                <i class="fas fa-user-cog"></i>
+                                            </div>
+                                            <div class="content">Quản lí trang </div>
+                                        </a>
+                                <?php
+                                    }
+                                ?>
+
+                            </div>
+                        </div>
+
+
+
+
+                  <?php
+                    }else {
+                        ?>
+                        <div class="buttons"><button class="btn-icon btn" id="btn-open-form-login"> <i class="fas fa-caret-down"></i></button></div>
+                        <div class="form-box"id="form-box">
+                            <div class="form-login" >
+                                <form  class="form" action="http://localhost/web-tin-tuc/index.php?c=User&a=doLogin" method="post" >
+                                    <div class="form-group">
+                                        <h5>Đăng nhập</h5>
+                                        <input type="text" name="email" value="nguyenhoangvu12c5@gmail.com" placeholder="enter your email" class="form-control">
+                                        <input type="password" name="password" value="123" placeholder="enter your password" class="form-control">
+                                        <button type="submit" class="form-control btn btn-primary">Đăng nhập</button>
+                                        <span>Chưa có tài khoản <a href="http://localhost/web-tin-tuc/index.php?c=User&a=signUp">Đăng kí ở đây!</a> </span>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                  <?php
+                    }
+                  ?>
+
+
+
            </div>
+
         </div>
     </nav>
     <section class="main-section">
@@ -378,8 +458,77 @@
             </div>
         </div>
     </section>
+
+    <section class="seen-post">
+        <div class="container">
+            <p>Những tin bạn đã đọc</p>
+            <div class="row">
+
+                <div class="col-lg-4 post-item">
+                    <div class="image">
+                        <img src="Assets/images/trending1.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <span class="tag">Công nghệ</span>
+                        <h5>Tiêu đề</h5>
+
+                    </div>
+                </div>
+                <div class="col-lg-4 post-item">
+                    <div class="image">
+                        <img src="Assets/images/trending2.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <span class="tag">Công nghệ</span>
+                        <h5>Tiêu đề</h5>
+
+                    </div>
+                </div>
+                <div class="col-lg-4 post-item">
+                    <div class="image">
+                        <img src="Assets/images/trending3.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <span class="tag">Công nghệ</span>
+                        <h5>Tiêu đề</h5>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <section class="footer">
+        <div class="container">
+            <div class="row ">
+               <div class="col-4">
+                    <p>NewsCard is a Multi-Purpose Magazine/News WordPress Theme. NewsCard is specially designed for magazine sites (food, travel, fashion, music, health, sports, photography), news sites, shopping sites, personal/photo blog and many more.
+
+                        There are Front Page Template, Sidebar Page Layout, Top Bar, Header Image/Overlay/Advertisement, Social Profiles and Banner Slider. Also supports popular plugins like WooCommerce, bbPress, Contact Form 7 and many more. It is also translation ready.</p>
+               </div>
+                <div class="col-4 cate" >
+                    <?php
+                    foreach ($data as $item => $value){
+                        ?>
+
+
+                            <p><?= $value->name ?></p>
+
+
+                        <?php
+                    }
+
+                    ?>
+                </div>
+                <div class="col-4">
+
+                </div>
+            </div>
+        </div>
+    </section>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="Assets/js/bootstrap.min.js"></script>
+<script src="Assets/js/home.js"></script>
 
 
 </body>
