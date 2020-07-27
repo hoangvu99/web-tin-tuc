@@ -1,12 +1,12 @@
 'use trict'
 document.addEventListener('DOMContentLoaded',function () {
-    let navigation_bar = document.getElementById('navigation-bar');
+    let navbar_main = document.getElementById('navbar-main');
     window.onscroll = function(){
-        if (this.scrollY > 150){
+        if (this.scrollY > 200){
 
-            navigation_bar.classList.add('fix');
+            navbar_main.classList.add('fix');
         }else {
-            navigation_bar.classList.remove('fix');
+            navbar_main.classList.remove('fix');
         }
     }
 

@@ -18,7 +18,7 @@ class UserModel extends BaseModel {
        return $user;
 
 
-        
+
     }
     function getListUserName(){
         $query = "select name from users";
@@ -30,5 +30,38 @@ class UserModel extends BaseModel {
         }
         return $data;
 
+    }
+
+    function getUserById($id){
+        $query = "select * from users where id = '$id'";
+        $result = parent::excuteQuery($query);
+        $user = $result->fetch_object();
+        return $user;
+    }
+
+    function getUserIdByEmail($email){
+
+        $query = "select id from users where email = '$email'";
+        $result = parent::excuteQuery($query);
+        $id=0;
+        foreach ($result->fetch_all() as $item){
+            $id = $item[0];
+        }
+        return $id;
+
+
+    }
+
+    function editUser($email,$username,$password,$gender){
+
+        $id = $this->getUserIdByEmail($email);
+
+        $query = "update users set username = '$username',password = '$password',gender = '$gender' where id = '$id'" ;
+        $result = parent::excuteQuery($query);
+
+        if($result){
+            return" cập nhập thành công";
+        }
+        return "cập nhập thất bại";
     }
 }

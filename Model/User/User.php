@@ -6,7 +6,7 @@ class User{
     public $email;
     public $password;
     public $gender;
-    public $dateofbirth;
+
 
     public function __construct($id,$name,$email,$password,$gender,$dateofbirth)
     {
