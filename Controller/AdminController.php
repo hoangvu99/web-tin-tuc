@@ -16,8 +16,8 @@ class AdminController{
     }
 
     function admin(){
-        $id = $_COOKIE['id'];
-        $user = $this->userModel->getUserById($id);
+//        $id = $_COOKIE['id'];
+//        $user = $this->userModel->getUserById($id);
 
 
         require_once SYSTEM_PATH."/View/admin.php";
@@ -29,9 +29,9 @@ class AdminController{
         $content = $_POST['content'];
 
         $post = new Post($title,$content);
-        $result = $this->postModel->add($title,$content);
+        $this->postModel->add($title,$content);
 
-        echo json_encode($content);
+
 
 
     }

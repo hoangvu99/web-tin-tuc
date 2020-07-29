@@ -147,9 +147,7 @@
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="Assets/js/bootstrap.min.js"></script>
-<script src="Assets/js/admin/admin.js"></script>
-<script src="Assets/js/admin/edit.js"></script>
-<script src="Assets/js/admin/addpost.js"></script>
+
 </body>
 </html>
 

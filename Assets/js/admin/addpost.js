@@ -83,32 +83,130 @@ document.addEventListener('DOMContentLoaded',function () {
             raw_text += contents[i].value+" ";
         }
 
-
+        let arr = raw_text.split(' ');
         let content_post = "";
 
-        for (let i = 0 ; i < images.length ; i++){
-            let img_url = processImage(images[i].value);
 
-            let img = '<img src="Assets/images/' +
-                '' +img_url+
-                '">' ;
+        for (let i = 0 ; i < arr.length ; i++){
+            for (let j = 0 ; j < images.length ;j++){
+                if (arr[i] == images[j].value){
+                    let img_url = processImage(images[j].value);
+                    let img = '<img src="Assets/images/' +
+                        '' +img_url+
+                        '">' ;
+                    arr[i] = img;
 
-            content_post = raw_text.replace(images[i].value , img);
-
+                }
+            }
+            content_post+=arr[i]+" ";
         }
-
+        console.log(content_post);
         $.ajax({
             url:"http://localhost/web-tin-tuc/index.php?c=admin&a=addPost",
             type:"POST",
             data:{title:title[0].value,content:content_post}
         }).then(function (data) {
+            alert('Tạo bài viết thành công!!!');
+            clearAllRow();
 
-            console.log('thanh cong');
 
         });
 
     }
 
+    function createSlug() {
+
+        let viet_key = [
+            'A','Ạ','Ả','Ã','À','Á',
+            'Ă','Ặ','Ẳ','Ẵ','Ằ','Ắ',
+            'Â','Ậ','Ẩ','Ẫ','Ầ','Ấ',
+            'B','C','D','Đ','E','Ẹ',
+            'Ẻ','Ẽ','È','É','Ê','Ệ',
+            'Ể','Ễ','Ề','Ế','G','H',
+            'I','Ị','Ỉ','Ĩ','Ì','Í',
+            'K','L','M','N','O','Ọ',
+            'Ỏ','Õ','Ò','Ó','Ô','Ộ',
+            'Ổ','Ỗ','Ồ','Ố','Ơ','Ợ',
+            'Ở','Ỡ','Ờ','Ớ','P','Q',
+            'R','S','T','U','Ụ',
+            'Ủ','Ũ','Ù','Ú','Ư','Ự',
+            'Ử','Ữ','Ừ','Ứ','V','X',
+            'Y','a','ạ','ả','ã','à',
+            'á','ă','ặ','ẳ','ẵ','ằ',
+            'ắ','â','ậ','ẩ','ẫ','ầ',
+            'ấ','b','c','e','ẹ','ẻ',
+            'ẽ','è','d','đ', 'é','ê',
+            'ệ','ể','ễ','ề', 'ế','g',
+            'h','i','ị','ỉ', 'ĩ','ì',
+            'í','k','l', 'm','n',
+            'o','ọ','ỏ','õ','ò','ó',
+            'ô','ộ','ổ','ỗ','ồ','ố',
+            'ơ','ợ','ở','ỡ','ờ','ớ',
+            'q','r','s','t','u','ụ',
+            'ủ','ũ','ù','ú','ư','ự',
+            'ử','ữ','ừ', 'ứ','v','x',
+            'y',' ','0', '1','2','3',
+            '4','5','6', '7','8','9',
+            '.','-',','
+        ];
+        let eng_key = [
+            'a','a','a','a','a','a',
+            'a','a','a','a','a','a',
+            'a','a','a','a','a','a',
+            'b','c','d','d','e','e',
+            'e','e','e','e','e','e',
+            'e','e','e','e','g','h',
+            'i','i','i','i','i','i',
+            'k','l','m','n','o','o',
+            'o','o','o','o','o','o',
+            'o','o','o','o','o','o',
+            'o','o','o','o','p','q',
+            'r','s','t','u','u',
+            'u','u','u','u','u','u',
+            'u','u','u','u','v','x',
+            'y','a','a','a','a','a',
+            'a','a','a','a','a','a',
+            'a','a','a','a','a','a',
+            'a','b','c','e','e','e',
+            'e','e','d','d', 'e','e',
+            'e','e','e','e', 'e','g',
+            'h','i','i','i', 'i','i',
+            'i','k','l', 'm','n',
+            'o','o','o','o','o','o',
+            'o','o','o','o','o','o',
+            'ơ','o','o','o','o','o',
+            'q','r','s','t','u','u',
+            'u','u','u','u','u','u',
+            'u','u','u', 'u','v','x',
+            'y','-','0', '1','2','3',
+            '4','5','6', '7','8','9',
+            '.','-',''
+        ];
+
+
+
+        let title = document.getElementsByClassName('title-post')[0];
+        let t = title.value.trim();
+        let sl = "";
+        for (let i = 0 ; i < t.length ; i++){
+            for (let j = 0 ; j < viet_key.length; j++){
+                if (t[i] == viet_key[j]){
+                    sl+=eng_key[j];
+                }
+            }
+        }
+
+        let input_title = "<tr>" +
+            "<td>Slug</td> " +
+            "<td><input type='text' class='form-control title-post' readonly value=" +
+            sl+"></td>" +
+            " <td><button class='btn btn-danger btn-remove' id='btn-remove' '><i class='fas fa-times'  ></i></button></td>" +
+            "</tr>";
+        new_post.insertAdjacentHTML("beforeend",input_title);
+        buttons_remove = document.getElementsByClassName('btn-remove');
+        addEventButton();
+
+    }
     function processImage(url){
         let correct_image_url = url.split("\\");
         return correct_image_url[correct_image_url.length-1];
@@ -120,5 +218,7 @@ document.addEventListener('DOMContentLoaded',function () {
     text.addEventListener('click',createText);
     clear.addEventListener('click',clearAllRow);
     save.addEventListener('click',createPost);
+    slug.addEventListener('click',createSlug);
+
 
 })
