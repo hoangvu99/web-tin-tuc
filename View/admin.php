@@ -15,7 +15,7 @@
         <div class="slider">
             <div class="logo">
                 <a href="https://www.facebook.com/VuAndre99/" class="box-logo">
-                    <img src="Assets/images/<?=$_COOKIE['avatar']?> " alt="">
+                    <i class="fas fa-gem"></i>
                 </a>
             </div>
 
@@ -160,8 +160,38 @@
                     </section>
 
                 </div>
-                <div class="my-post box">2</div>
-                <div class="add-post box">3</div>
+                <div class="my-post box"></div>
+                <div class="add-post box">
+                    <div class="tools">
+                        <button class="btn btn-danger" id="btn-create"><i class="fas fa-plus"></i></button>
+                        <button class="btn btn-danger" id="btn-title"><i class="fas fa-heading"></i></button>
+                        <button class="btn btn-danger" id="btn-image"><i class="fas fa-images"></i></button>
+                        <button class="btn btn-danger" id="btn-text"><i class="fas fa-align-justify"></i></button>
+                        <button class="btn btn-danger" id="btn-slug"><i class="fas fa-bookmark"></i></button>
+                        <button class="btn btn-danger" id="btn-save"><i class="fas fa-save"></i></button>
+                        <button class="btn btn-danger" id="btn-clear"><i class="fas fa-trash-alt"></i></button>
+                    </div>
+                    <section class="section-post">
+                        <div class="post" id="post">
+                            <table class="table table-new-post">
+                                <thead>
+                                <tr>
+                                    <th class="type">Loại</th>
+                                    <th class="content">Nội dung</th>
+                                    <th class="delete">Tùy chọn</th>
+                                </tr>
+                                </thead>
+                                <tbody id="form-create-post">
+
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+
+                </div>
                 <div class="pending-post box">4</div>
                 <div class="list-post box">5</div>
                 <div class="user box">6</div>
@@ -178,6 +208,8 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="Assets/js/bootstrap.min.js"></script>
-    <script src="Assets/js/admin.js"></script>
+    <script src="Assets/js/admin/admin.js"></script>
+    <script src="Assets/js/admin/edit.js"></script>
+    <script src="Assets/js/admin/addpost.js"></script>
 </body>
 </html>
