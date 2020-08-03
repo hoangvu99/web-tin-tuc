@@ -1,6 +1,6 @@
 <?php
-include SYSTEM_PATH."/Model/Category/CategoryModel.php";
-include SYSTEM_PATH."/Model/User/UserModel.php";
+include_once SYSTEM_PATH."/Model/Category/CategoryModel.php";
+include_once SYSTEM_PATH."/Model/User/UserModel.php";
 class HomeController{
     public $categoryModel;
     public $userModel;

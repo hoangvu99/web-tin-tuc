@@ -20,5 +20,23 @@ class CategoryModel extends BaseModel {
 
     }
 
+    public function getCategoryById($id){
+        $query = "select * from categories where id = '$id'";
+        $result = parent::excuteQuery($query);
+        $category = $result->fetch_object();
+        return $category;
+    }
+
+    public function getCategoryByName($name){
+        $query = "select id from categories where name ='$name'";
+        $result = parent::excuteQuery($query);
+        $categoryId = -1;
+        foreach ($result->fetch_all() as $value){
+            $categoryId = $value;
+        }
+        return $categoryId;
+    }
+
+
 
 }

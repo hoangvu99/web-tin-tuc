@@ -96,7 +96,7 @@
                             ?>
                             <span>Trang cá nhân</span>
                         </a>
-                        <a  class="user-item" href="http://localhost/web-tin-tuc/index.php?c=admin&a=admin">
+                        <a  class="user-item" href="http://localhost/web-tin-tuc/index.php?c=admin">
                             <?php
                             if ($_COOKIE['role'] =="ADMIN"){
                                 ?>

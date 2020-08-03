@@ -64,4 +64,15 @@ class UserModel extends BaseModel {
         }
         return "cập nhập thất bại";
     }
+
+    function getUserIdByUserName($username){
+        $query = "select id from users where username = '$username'";
+        $result = parent::excuteQuery($query);
+        $userId = -1;
+        foreach ($result->fetch_all() as $value){
+            $userId = $value[0];
+        }
+        return $userId;
+
+    }
 }

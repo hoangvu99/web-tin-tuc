@@ -22,56 +22,56 @@
             <div class="navigation-bar">
                 <ul class="nav-menu nav">
                     <li class="nav-item">
-                        <a  class="nav-link" id="home">
+                        <a  href="http://localhost/web-tin-tuc/index.php?c=admin&v=home" class="nav-link" >
                             <i class="fas fa-home icon"></i>
                             <span class="text">Trang chủ</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a  class="nav-link" id="edit-profile" >
+                        <a href="http://localhost/web-tin-tuc/index.php?c=admin&v=edit-profile" class="nav-link" >
                             <i class="fas fa-user-edit icon"></i>
                             <span class="text">Chỉnh sửa thông tin</span>
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a  class="nav-link" id="my-post">
+                        <a href="http://localhost/web-tin-tuc/index.php?c=admin&v=my-post"  class="nav-link" id="">
                             <i class="fas fa-address-card icon"></i>
                             <span class="text">Bài viết của bạn</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a  class="nav-link" id="add-post">
+                        <a href="http://localhost/web-tin-tuc/index.php?c=admin&v=add-post"  class="nav-link" id="">
                             <i class="fas fa-pen-alt icon"></i>
                             <span class="text">Thêm bài viết</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a  class="nav-link" id="pending-post">
+                        <a  href="http://localhost/web-tin-tuc/index.php?c=admin&v=pending-post" class="nav-link" id="">
                             <i class="fas fa-business-time icon"></i>
                             <span class="text">Bài viết chờ phê duyệt</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a  class="nav-link" id="list-post">
+                        <a href="http://localhost/web-tin-tuc/index.php?c=admin&v=list-post" class="nav-link" id="">
                             <i class="fas fa-list-alt icon "></i>
                             <span class="text">Danh sách bài viết</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a  class="nav-link" id="user">
+                        <a href="http://localhost/web-tin-tuc/index.php?c=admin&v=user" class="nav-link" id="">
                             <i class="fas fa-users icon" ></i>
                             <span class="text">Thành viên</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a  class="nav-link" id="pending-regis">
+                        <a href="http://localhost/web-tin-tuc/index.php?c=admin&v=pending-regis" class="nav-link" id="">
                             <i class="fas fa-user-plus icon"></i>
                             <span class="text">Yêu cầu đăng kí</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a  class="nav-link" id="pending-comment">
+                        <a href="http://localhost/web-tin-tuc/index.php?c=admin&v=pending-comment" class="nav-link" id="">
                             <i class="fas fa-comments icon"></i>
                             <span class="text">Phê duyệt bình luận</span>
                         </a>
@@ -85,10 +85,12 @@
         </div>
         <div class="content">
             <div class="head">
-                <input type="text" class="form-control search-box" id="search-box" placeholder="Tìm kiếm...">
+                <img  style="width: 50px;height: 50px;border-radius: 50% ; margin-left: 95%" src="Assets/images/<?=$user->avatar?>" alt="">
+                <p style="display: none" id="user-id"><?= $user->id ?></p>
+
             </div>
             <div class="box-content">
-                <div class="home box">
+                <div class="home box" id="home">
                    <div class="box-noti">
                        <div class="box-noti-item">
                            <p>Số lượng thành viên</p>
@@ -113,7 +115,7 @@
                    </div>
 
                 </div>
-                <div class="edit-profile box">
+                <div class="edit-profile box" id="edit-profile">
                     <section class="edit">
                         <div class="image-button">
                             <img src="Assets/images/<?=$user->avatar?>" alt="">
@@ -160,14 +162,16 @@
                     </section>
 
                 </div>
-                <div class="my-post box"></div>
-                <div class="add-post box">
+                <div class="my-post box" id="my-post"></div>
+                <div class="add-post box" id="add-post">
                     <div class="tools">
                         <button class="btn btn-danger" id="btn-create"><i class="fas fa-plus"></i></button>
                         <button class="btn btn-danger" id="btn-title"><i class="fas fa-heading"></i></button>
                         <button class="btn btn-danger" id="btn-image"><i class="fas fa-images"></i></button>
                         <button class="btn btn-danger" id="btn-text"><i class="fas fa-align-justify"></i></button>
                         <button class="btn btn-danger" id="btn-slug"><i class="fas fa-bookmark"></i></button>
+
+                        <button class="btn btn-danger" id="btn-category"><i class="fas fa-mouse-pointer"></i></button>
                         <button class="btn btn-danger" id="btn-save"><i class="fas fa-save"></i></button>
                         <button class="btn btn-danger" id="btn-clear"><i class="fas fa-trash-alt"></i></button>
                     </div>
@@ -192,11 +196,50 @@
 
 
                 </div>
-                <div class="pending-post box">4</div>
-                <div class="list-post box">5</div>
-                <div class="user box">6</div>
-                <div class="pending-regis box">7</div>
-                <div class="pending-comment box">8</div>
+                <div class="pending-post box" id="pending-post">
+                    <button class="btn btn-info" id="btn-approval-pending-post"><i class="fas fa-check-circle"></i></button>
+                    <div class="data-table">
+                        <table class="table pending-post-table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="th-checkbox"><input class="pending-post-all" id="pending-post-all" type="checkbox"></th>
+                                    <th class="th-stt">STT</th>
+                                    <th class="th-title">Tiêu đề</th>
+                                    <th class="th-content" id="th-content">Nội dung</th>
+                                    <th class="th-author">Tác giả</th>
+                                    <th class="th-category">Thể loại</th>
+
+                                </tr>
+                                <tbody class="tbody">
+                                    <?php
+                                        for ($i = 0 ; $i < count($listPendingPosts);$i++){
+                                            ?>
+                                            <tr>
+                                                <td class="td-checkbox"><input class="pending-post-item" type="checkbox"></td>
+                                                <td class="td-stt" data-ppid=<?= $listPendingPosts[$i][0] ?>><?=$i+1?></td>
+                                                <td class="td-title"><?= $listPendingPosts[$i][1] ?></td>
+                                                <td class="td-content"><?= $listPendingPosts[$i][2]?></td>
+                                                <td class="td-author" data-userid=<?= $listPendingPosts[$i][4]->id?> >
+                                                    <a href="http://localhost/web-tin-tuc/index.php?c=user&a=getUserByUserId&userId=<?= $listPendingPosts[$i][4]->id?>"><?= $listPendingPosts[$i][4]->username?></a>
+                                                </td>
+                                                <td class="td-category" data-categoryid=<?= $listPendingPosts[$i][5]->id?>><?= $listPendingPosts[$i][5]->name?></td>
+
+                                            </tr>
+                                    <?php
+                                    }
+                                    ?>
+
+                            </tbody>
+                            </thead>
+                        </table>
+                    </div>
+
+
+                </div>
+                <div class="list-post box" id="list-post">5</div>
+                <div class="user box" id="user">6</div>
+                <div class="pending-regis box" id="pending-regis">7</div>
+                <div class="pending-comment box" id="pending-comment">8</div>
             </div>
 
         </div>
@@ -211,5 +254,6 @@
     <script src="Assets/js/admin/admin.js"></script>
     <script src="Assets/js/admin/edit.js"></script>
     <script src="Assets/js/admin/addpost.js"></script>
+    <script src="Assets/js/admin/pendingpost.js"></script>
 </body>
 </html>

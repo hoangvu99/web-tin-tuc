@@ -1,6 +1,6 @@
 <?php
-include SYSTEM_PATH."/Model/Post/PostModel.php";
-include SYSTEM_PATH."/Model/Category/CategoryModel.php";
+include_once SYSTEM_PATH."/Model/Post/PostModel.php";
+include_once SYSTEM_PATH."/Model/Category/CategoryModel.php";
 class PostController{
     public $postModel;
     public $categoryModel;

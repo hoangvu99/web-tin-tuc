@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded',function () {
 
     let arrUsername;
     $.ajax({
-        url: "http://localhost/web-tin-tuc/index.php?c=Api&a=getListUserName"
+            url: "http://localhost/web-tin-tuc/index.php?c=Api&a=getListUserName"
     }).then(function (data) {
         arrUsername = $.parseJSON(data);
 

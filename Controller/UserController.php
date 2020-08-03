@@ -1,7 +1,7 @@
 <?php
-include SYSTEM_PATH."/Model/Category/CategoryModel.php";
-include SYSTEM_PATH."/Model/User/UserModel.php";
-include SYSTEM_PATH."/Model/User/UserRegisModel.php";
+include_once SYSTEM_PATH."/Model/Category/CategoryModel.php";
+include_once SYSTEM_PATH."/Model/User/UserModel.php";
+include_once SYSTEM_PATH."/Model/User/UserRegisModel.php";
 class UserController {
 
     public $categoryModel;
@@ -70,4 +70,5 @@ class UserController {
         $result = $this->userModel->editUser($email,$username,$password,$gender);
 
     }
+
 }

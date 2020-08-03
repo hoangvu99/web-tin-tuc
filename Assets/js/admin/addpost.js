@@ -1,5 +1,13 @@
 document.addEventListener('DOMContentLoaded',function () {
 
+    let listCategoris;
+
+    $.ajax({
+        url:'http://localhost/web-tin-tuc/index.php?c=Api&a=getListCategories'
+    }).then(function (data) {
+        listCategoris = $.parseJSON(data);
+    });
+
     let creat = document.getElementById('btn-create');
     let title = document.getElementById('btn-title');
     let image = document.getElementById('btn-image');
@@ -7,6 +15,8 @@ document.addEventListener('DOMContentLoaded',function () {
     let slug = document.getElementById('btn-slug');
     let save = document.getElementById('btn-save');
     let clear = document.getElementById('btn-clear');
+    let category = document.getElementById('btn-category');
+    let userId = document.getElementById('user-id');
     let buttons_remove = [];
 
     let post = document.getElementById('post');
@@ -26,7 +36,7 @@ document.addEventListener('DOMContentLoaded',function () {
     function createTitle(){
         let input_title = "<tr>" +
             "<td>Tiêu đề</td> " +
-            "<td><input type='text' class='form-control title-post' value='tieu de ne '></td>" +
+            "<td><input type='text' class='form-control title-post'></td>" +
             " <td><button class='btn btn-danger btn-remove' id='btn-remove' '><i class='fas fa-times'  ></i></button></td>" +
             "</tr>";
         new_post.insertAdjacentHTML("beforeend",input_title);
@@ -47,7 +57,7 @@ document.addEventListener('DOMContentLoaded',function () {
     function createText(){
         let text_input = "<tr>" +
             "<td>Nội dung</td>" +
-            "<td><textarea class='content-post' cols='125' rows='7' value='noi dong ne '></textarea></td>" +
+            "<td><textarea class='content-post' cols='125' rows='7'  ></textarea></td>" +
             "<td><button class='btn btn-danger btn-remove' id='btn-remove' '><i class='fas fa-times'  ></i></button></td>" +
             "</tr>";
         new_post.insertAdjacentHTML("beforeend",text_input);
@@ -76,6 +86,10 @@ document.addEventListener('DOMContentLoaded',function () {
         let title = document.getElementsByClassName('title-post');
         let images = document.getElementsByClassName('image');
         let contents = document.getElementsByClassName('content-post');
+        let select = document.getElementById('categories-option');
+        let slug = document.getElementById('slug');
+        let value = select.options[select.selectedIndex].value;
+
 
         let raw_text = "";
 
@@ -100,12 +114,12 @@ document.addEventListener('DOMContentLoaded',function () {
             }
             content_post+=arr[i]+" ";
         }
-        console.log(content_post);
+        console.log(userId.innerText);
         $.ajax({
-            url:"http://localhost/web-tin-tuc/index.php?c=admin&a=addPost",
+            url:"http://localhost/web-tin-tuc/index.php?c=admin&a=addPendingPost",
             type:"POST",
-            data:{title:title[0].value,content:content_post}
-        }).then(function (data) {
+            data:{title:title[0].value,content:content_post,slug:slug.value,categoryId:value,userId:userId.innerText}
+        }).then(function () {
             alert('Tạo bài viết thành công!!!');
             clearAllRow();
 
@@ -198,7 +212,7 @@ document.addEventListener('DOMContentLoaded',function () {
 
         let input_title = "<tr>" +
             "<td>Slug</td> " +
-            "<td><input type='text' class='form-control title-post' readonly value=" +
+            "<td><input type='text' class='form-control title-post slug' id='slug' readonly value=" +
             sl+"></td>" +
             " <td><button class='btn btn-danger btn-remove' id='btn-remove' '><i class='fas fa-times'  ></i></button></td>" +
             "</tr>";
@@ -212,6 +226,31 @@ document.addEventListener('DOMContentLoaded',function () {
         return correct_image_url[correct_image_url.length-1];
     }
 
+    function createOptionCategory(){
+
+        let select_input = "<tr>" +
+            "<td>Chủ đề</td>"+
+            "<td> <select class='form-control' id='categories-option'>"+
+            "</select> </td>"+
+            " <td><button class='btn btn-danger btn-remove' id='btn-remove' '><i class='fas fa-times'  ></i></button></td>" +
+            "</tr>";
+
+
+        new_post.insertAdjacentHTML('beforeend',select_input);
+        addOption();
+    }
+
+    function addOption(){
+        let select = document.getElementById('categories-option');
+
+        for (let i = 0 ; i <listCategoris.length ; i++){
+            let option = document.createElement('option');
+            option.value= listCategoris[i].id;
+            option.text=listCategoris[i].name;
+            select.add(option);
+        }
+    }
+
     creat.addEventListener('click',showNewPost);
     title.addEventListener('click',createTitle);
     image.addEventListener('click',createImage);
@@ -219,6 +258,7 @@ document.addEventListener('DOMContentLoaded',function () {
     clear.addEventListener('click',clearAllRow);
     save.addEventListener('click',createPost);
     slug.addEventListener('click',createSlug);
+    category.addEventListener('click',createOptionCategory);
 
 
 })
