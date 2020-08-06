@@ -22,7 +22,8 @@ class AdminController{
         $id = $_COOKIE['id'];
         $user = $this->userModel->getUserById($id);
         $listPendingPosts = $this->pendingPostModel->loadAllPost();
-
+        $listPost = $this->postModel->loadAllPost();
+        $categories = $this->categoryModel->getAllCategory();
         require_once SYSTEM_PATH."/View/admin.php";
     }
 
@@ -33,16 +34,26 @@ class AdminController{
         $slug = $_POST['slug'];
         $categoryId = $_POST['categoryId'];
         $userId = $_POST['userId'];
-        $this->pendingPostModel->add($title,$content,$categoryId,$slug,$userId);
+        $intro = $_POST['intro'];
+        $imageThumbnail= $_POST['imageThumbnail'];
+        $this->pendingPostModel->add($title,$content,$categoryId,$slug,$userId,$intro,$imageThumbnail);
     }
 
     function addPost(){
         $listPost = $_POST['listPost'];
         $this->postModel->addPostFromListPendingPost($listPost);
         $this->pendingPostModel->removeListPendingPost($listPost);
+    }
 
+    function removePostByPostId(){
+        $id = $_POST['id'];
+        $this->postModel->removePostByPostId($id);
+    }
 
-
+    function previewpost(){
+        $id = $_POST['id'];
+        $post = $this->postModel->loadPostByPostId($id);
+        echo json_encode($post);
     }
 
 

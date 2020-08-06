@@ -10,9 +10,9 @@ class PendingPostModel extends BaseModel {
         parent::__construct();
     }
 
-    function add($title,$content,$categoryId,$slug,$userId){
+    function add($title,$content,$categoryId,$slug,$userId,$intro,$imageThumbnail){
 
-        $query = "insert into pending_post (title,content,category_id,slug,user_id) values ('$title','$content','$categoryId','$slug','$userId')";
+        $query = "insert into pending_post (title,content,category_id,slug,user_id,intro,image_thumbnail) values ('$title','$content','$categoryId','$slug','$userId','$intro','$imageThumbnail')";
         $result = parent::excuteQuery($query);
 
     }
@@ -35,7 +35,7 @@ class PendingPostModel extends BaseModel {
             $category = $categoryModel->getCategoryById($item[5]);
             $child=[];
 
-            array_push($data,[$item[0],$item[1],$item[2],$item[3],$user,$category]);
+            array_push($data,[$item[0],$item[1],$item[2],$item[3],$user,$category,$item[6],$item[7]]);
         }
         return $data;
     }

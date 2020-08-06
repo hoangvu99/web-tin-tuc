@@ -2,12 +2,16 @@
 
 class Post{
     public $id;
-    public $title;
-    public $content;
-    public $userId;
     public $categoryId;
-    public $slug;
+    public $title;
+    public $intro;
+    public $content;
     public $countComment;
+    public $slug;
+    public $userId;
+
+
+
     public $countView;
     public $countReaction;
     public $activate;

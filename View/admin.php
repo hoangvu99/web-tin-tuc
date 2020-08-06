@@ -12,6 +12,7 @@
 </head>
 <body>
     <div class="wrapper">
+
         <div class="slider">
             <div class="logo">
                 <a href="https://www.facebook.com/VuAndre99/" class="box-logo">
@@ -167,10 +168,11 @@
                     <div class="tools">
                         <button class="btn btn-danger" id="btn-create"><i class="fas fa-plus"></i></button>
                         <button class="btn btn-danger" id="btn-title"><i class="fas fa-heading"></i></button>
+                        <button class="btn btn-danger" id="btn-slug"><i class="fas fa-bookmark"></i></button>
+                        <button class="btn btn-danger" id="btn-intro"><i class="fab fa-invision"></i></button>
+
                         <button class="btn btn-danger" id="btn-image"><i class="fas fa-images"></i></button>
                         <button class="btn btn-danger" id="btn-text"><i class="fas fa-align-justify"></i></button>
-                        <button class="btn btn-danger" id="btn-slug"><i class="fas fa-bookmark"></i></button>
-
                         <button class="btn btn-danger" id="btn-category"><i class="fas fa-mouse-pointer"></i></button>
                         <button class="btn btn-danger" id="btn-save"><i class="fas fa-save"></i></button>
                         <button class="btn btn-danger" id="btn-clear"><i class="fas fa-trash-alt"></i></button>
@@ -205,7 +207,7 @@
                                     <th class="th-checkbox"><input class="pending-post-all" id="pending-post-all" type="checkbox"></th>
                                     <th class="th-stt">STT</th>
                                     <th class="th-title">Tiêu đề</th>
-                                    <th class="th-content" id="th-content">Nội dung</th>
+                                    <th class="th-intro">Nội dung</th>
                                     <th class="th-author">Tác giả</th>
                                     <th class="th-category">Thể loại</th>
 
@@ -217,12 +219,12 @@
                                             <tr>
                                                 <td class="td-checkbox"><input class="pending-post-item" type="checkbox"></td>
                                                 <td class="td-stt" data-ppid=<?= $listPendingPosts[$i][0] ?>><?=$i+1?></td>
-                                                <td class="td-title"><?= $listPendingPosts[$i][1] ?></td>
-                                                <td class="td-content"><?= $listPendingPosts[$i][2]?></td>
+                                                <td class="td-title" data-slug="<?= $listPendingPosts[$i][3] ?>" ><?= $listPendingPosts[$i][1] ?></td>
+                                                <td class="td-content" data-imagethumbnail='<?=$listPendingPosts[$i][7]?>' data-intro="<?= $listPendingPosts[$i][6] ?>"><?=$listPendingPosts[$i][2]?></td>
                                                 <td class="td-author" data-userid=<?= $listPendingPosts[$i][4]->id?> >
                                                     <a href="http://localhost/web-tin-tuc/index.php?c=user&a=getUserByUserId&userId=<?= $listPendingPosts[$i][4]->id?>"><?= $listPendingPosts[$i][4]->username?></a>
                                                 </td>
-                                                <td class="td-category" data-categoryid=<?= $listPendingPosts[$i][5]->id?>><?= $listPendingPosts[$i][5]->name?></td>
+                                                <td class="td-category"  data-categoryid=<?= $listPendingPosts[$i][5]->id?>><?= $listPendingPosts[$i][5]->name?></td>
 
                                             </tr>
                                     <?php
@@ -236,10 +238,91 @@
 
 
                 </div>
-                <div class="list-post box" id="list-post">5</div>
+                <div class="list-post box" id="list-post">
+                    <div class="filter">
+                       <div class="fill">
+                           <select name="" id="fill" class="form-control">
+                               <option value="0">Tất cả</option>
+                               <?php
+                                    foreach ($categories as $item){
+                                        ?>
+                                        <option value="<?=$item->id?>"> <?=$item->name?></option>
+                               <?php
+                                    }
+
+                               ?>
+
+                           </select>
+
+                           <select name="" id="sort" class="form-control">
+                               <option value="1">Cũ nhất</option>
+                               <option value="2">Mới nhất</option>
+                               <option value="2">Tương tác cao nhất</option>
+                           </select>
+                       </div>
+
+                    </div>
+                    <div class="grid-container">
+                        <?php
+                            foreach ($listPost as $post){
+                                ?>
+                                <div class="grid-item" data-postid="<?= $post[0] ?>" data-categoryId="<?= $post[1] ?>">
+
+                                        <div class="list-post-item">
+                                           <div class="box-wrapp-button-remove"> <i class='fas fa-trash-alt button-remove-post' ></i></div>
+                                            <div class="image-thumbnail">
+                                                <span><?= $post[11] ?></span>
+                                            </div>
+                                            <div class="post-detail">
+                                                <h5 class="title-post"><?= $post[2] ?></h5>
+                                                <p class="intro-post"><?= $post[3] ?>...</p>
+
+                                            </div>
+                                            <div class="reaction">
+                                                <div class="reaction-item" style="justify-content: normal;width: 40%">
+
+                                                </div>
+                                                <div class="reaction-item" style="width: 20%">
+                                                    <span><i class="fas fa-eye"></i><?= $post[9] ?></span>
+                                                </div>
+                                                <div class="reaction-item" style="width: 20%">
+                                                    <span><i class="far fa-heart"></i><?= $post[10] ?></span>
+                                                </div>
+                                                <div class="reaction-item" style="width: 20%">
+                                                    <span><i class="far fa-comment"></i><?= $post[5] ?></span>
+                                                </div>
+
+
+
+
+                                            </div>
+                                        </div>
+
+                                </div>
+                        <?php
+                            }
+
+                        ?>
+                    </div>
+
+                </div>
                 <div class="user box" id="user">6</div>
                 <div class="pending-regis box" id="pending-regis">7</div>
                 <div class="pending-comment box" id="pending-comment">8</div>
+            </div>
+
+        </div>
+        <div class="modal-view-post-item" id="modal-view-post-item">
+            <div class="post-content">
+                <button class="btn btn-danger" id="btn-close-post"><i class="fas fa-times"></i></button>
+                <div class="post-header">
+                    <h3 class="title-post" id="title-post"></h3>
+                    <h5 class="intro-post" id="intro-post"></h5>
+                </div>
+                <div class="post-body">
+                    <p class="post-text" id="post-text"></p>
+                </div>
+
             </div>
 
         </div>
@@ -255,5 +338,6 @@
     <script src="Assets/js/admin/edit.js"></script>
     <script src="Assets/js/admin/addpost.js"></script>
     <script src="Assets/js/admin/pendingpost.js"></script>
+    <script src="Assets/js/admin/listpost.js"></script>
 </body>
 </html>

@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded',function () {
     let clear = document.getElementById('btn-clear');
     let category = document.getElementById('btn-category');
     let userId = document.getElementById('user-id');
+    let intro  = document.getElementById('btn-intro');
     let buttons_remove = [];
 
     let post = document.getElementById('post');
@@ -82,6 +83,17 @@ document.addEventListener('DOMContentLoaded',function () {
         }
     }
 
+    function createIntro() {
+        let input_intro = "<tr>" +
+            "<td>Giới thiệu</td> " +
+            "<td><input type='text' class='form-control intro-post'></td>" +
+            " <td><button class='btn btn-danger btn-remove' id='btn-remove' '><i class='fas fa-times'  ></i></button></td>" +
+            "</tr>";
+        new_post.insertAdjacentHTML("beforeend",input_intro);
+        buttons_remove = document.getElementsByClassName('btn-remove');
+        addEventButton();
+    }
+
     function createPost(){
         let title = document.getElementsByClassName('title-post');
         let images = document.getElementsByClassName('image');
@@ -89,7 +101,7 @@ document.addEventListener('DOMContentLoaded',function () {
         let select = document.getElementById('categories-option');
         let slug = document.getElementById('slug');
         let value = select.options[select.selectedIndex].value;
-
+        let intro = document.getElementsByClassName('intro-post');
 
         let raw_text = "";
 
@@ -114,16 +126,15 @@ document.addEventListener('DOMContentLoaded',function () {
             }
             content_post+=arr[i]+" ";
         }
-        console.log(userId.innerText);
+        let image_thumbnail = arr[0];
+        console.log(image_thumbnail);
         $.ajax({
             url:"http://localhost/web-tin-tuc/index.php?c=admin&a=addPendingPost",
             type:"POST",
-            data:{title:title[0].value,content:content_post,slug:slug.value,categoryId:value,userId:userId.innerText}
+            data:{title:title[0].value,content:content_post,slug:slug.value,categoryId:value,userId:userId.innerText,intro:intro[0].value,imageThumbnail:image_thumbnail}
         }).then(function () {
             alert('Tạo bài viết thành công!!!');
             clearAllRow();
-
-
         });
 
     }
@@ -258,6 +269,7 @@ document.addEventListener('DOMContentLoaded',function () {
     clear.addEventListener('click',clearAllRow);
     save.addEventListener('click',createPost);
     slug.addEventListener('click',createSlug);
+    intro.addEventListener('click',createIntro);
     category.addEventListener('click',createOptionCategory);
 
 

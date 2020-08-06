@@ -32,7 +32,7 @@ class PostModel extends BaseModel {
         $result = parent::excuteQuery($query);
         $data = [];
         foreach ($result->fetch_all() as $item){
-            array_push($data,new Post($item[0],$item[2],$item[4],$item[1],$item[9],$item[8],$item[12],$item[13]));
+            array_push($data,$item);
         }
         return $data;
     }
@@ -41,13 +41,21 @@ class PostModel extends BaseModel {
 
         for ($i = 0 ; $i < count($listPendingPost); $i++){
             $title = $listPendingPost[$i][1];
-            $content = $listPendingPost[$i][2];
-            $userId = $listPendingPost[$i][3];
-            $categoryId = $listPendingPost[$i][4];
-            $query = "insert into posts (title,content,user_id,category_id) values ('$title','$content','$userId','$categoryId')";
-            $result = parent::excuteQuery($query);
+            $slug = $listPendingPost[$i][2];
+            $intro = $listPendingPost[$i][3];
+            $content = $listPendingPost[$i][4];
+            $userId = $listPendingPost[$i][5];
+            $categoryId = $listPendingPost[$i][6];
+            $imagethumbnail = $listPendingPost[$i][7];
+            $query = "insert into posts (title,slug,intro,content,user_id,category_id,image_thumbnail,count_comment,count_view,count_reaction) values ('$title','$slug','$intro','$content','$userId','$categoryId','$imagethumbnail','0','0','0')";
+            parent::excuteQuery($query);
 
         }
+    }
+
+    function removePostByPostId($id){
+        $query = "delete from posts where id='$id'";
+        parent::excuteQuery($query);
     }
 
 

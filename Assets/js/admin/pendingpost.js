@@ -33,27 +33,33 @@ document.addEventListener('DOMContentLoaded',function () {
                 let child =[
                             checkboxitems[i].parentNode.parentNode.children[1].dataset.ppid,
                             checkboxitems[i].parentNode.parentNode.children[2].textContent,
+                            checkboxitems[i].parentNode.parentNode.children[2].dataset.slug,
+                            checkboxitems[i].parentNode.parentNode.children[3].dataset.intro,
                             checkboxitems[i].parentNode.parentNode.children[3].innerHTML,
                             checkboxitems[i].parentNode.parentNode.children[4].dataset.userid,
-                            checkboxitems[i].parentNode.parentNode.children[5].dataset.categoryid,]
+                            checkboxitems[i].parentNode.parentNode.children[5].dataset.categoryid,
+                            checkboxitems[i].parentNode.parentNode.children[3].dataset.imagethumbnail]
                 data.push(child)
 
 
             }
         }
-
+        console.log(data);
 
         $.ajax({
             url:"http://localhost/web-tin-tuc/index.php?c=Admin&a=addPost",
             type:'post',
             data: {listPost:data},
-            dataType:"json"
-
-        }).then(function(){
-            window.location.href="http://localhost/web-tin-tuc/index.php?c=Admin&a=pending-post";
 
 
+        }).then(function () {
+            for(let i = 0 ; i < checkboxitems.length; i++ ){
+                if(checkboxitems[i].checked=true){
+                    checkboxitems[i].parentNode.parentNode.remove();
+                }
+            }
         });
+
 
     }
 
