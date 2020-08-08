@@ -151,17 +151,19 @@
                     <div  class="content-left" >
                         <div class="topic">Bài viết mới nhất</div>
                         <div class="new-post">
-                            <div class="wrapp-image">
-                                <img src="Assets/images/main1.jpg" alt="">
-                            </div>
-                            <div class="description-post">
-                                <span class="tag">thời sự</span><span class="tag">thế giới</span><span class="tag">quận sự</span>
-                                <h5 class="title">Tổng thống Mỹ</h5>
-                            </div>
-                            <div class="interactive">
-                                <i class="far fa-heart"></i>
-                                <i class="far fa-comment"></i>
-                            </div>
+                            <a href="" data-postid="<?= $latestPost[0] ?>">
+                                <div class="wrapp-image">
+                                    <p><?= $latestPost[11] ?></p>
+                                </div>
+                                <div class="description-post">
+                                    <span class="tag"><?= $latestPost[12]->name?></span>
+                                    <h5 class="title" style="color: black"><?= $latestPost[2] ?></h5>
+                                </div>
+                                <div class="interactive">
+                                    <i class="far fa-heart"></i>
+                                    <i class="far fa-comment"></i>
+                                </div>
+                            </a>
                         </div>
 
                     </div>
@@ -169,65 +171,29 @@
                     <div class="content-right">
                         <div class="topic">Top bài viết nổi bật nhất</div>
                         <div class="top-post">
-                            <div class="top-post-item">
-                                <div class="wrapp-image">
-                                    <img src="Assets/images/trending1.jpg" alt="">
-                                </div>
-                                <div class="post-item-content">
-                                    <p> <span class="tag">thời sự</span><span class="tag">thế giới</span><span class="tag">quận sự</span></p>
-                                    <h5 class="title">TT Trump tăng tốc trừng phạt TQ khi bầu cử chỉ cách hơn 100 ngày</h5>
-                                    <div class="interactive">
-                                        <i class="far fa-heart"></i>
-                                        <i class="far fa-comment"></i>
+                            <?php
+                                for ($i = 0 ; $i < count($listTrendingPost) ; $i++){
+                                    ?>
+                                    <div class="top-post-item">
+                                        <div class="wrapp-image">
+                                            <span><?=$listTrendingPost[$i][11] ?></span>
+                                        </div>
+                                        <div class="post-item-content">
+                                             <span class="tag"><?=$listTrendingPost[$i][12]->name ?></span>
+                                            <h5 class="title" style="color: black"><?=$listTrendingPost[$i][2] ?></h5>
+                                            <div class="interactive">
+                                                <i class="far fa-heart"></i>
+                                                <i class="far fa-comment"></i>
+
+                                            </div>
+                                        </div>
 
                                     </div>
-                                </div>
+                            <?php
+                                }
+                            ?>
 
-                            </div>
-                            <div class="top-post-item">
-                                <div class="wrapp-image">
-                                    <img src="Assets/images/trending1.jpg" alt="">
-                                </div>
-                                <div class="post-item-content">
-                                    <p> <span class="tag">thời sự</span><span class="tag">thế giới</span><span class="tag">quận sự</span></p>
 
-                                    <h5 class="title">TT Trump tăng tốc trừng phạt TQ khi bầu cử chỉ cách hơn 100 ngày</h5>
-                                    <div class="interactive">
-                                        <i class="far fa-heart"></i>
-                                        <i class="far fa-comment"></i>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="top-post-item">
-                                <div class="wrapp-image">
-                                    <img src="Assets/images/trending1.jpg" alt="">
-                                </div>
-                                <div class="post-item-content">
-                                    <p> <span class="tag">thời sự</span><span class="tag">thế giới</span><span class="tag">quận sự</span></p>
-
-                                    <h5 class="title">TT Trump tăng tốc trừng phạt TQ khi bầu cử chỉ cách hơn 100 ngày</h5>
-                                    <div class="interactive">
-                                        <i class="far fa-heart"></i>
-                                        <i class="far fa-comment"></i>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="top-post-item">
-                                <div class="wrapp-image">
-                                    <img src="Assets/images/trending1.jpg" alt="">
-                                </div>
-                                <div class="post-item-content">
-                                    <p> <span class="tag">thời sự</span><span class="tag">thế giới</span><span class="tag">quận sự</span></p>
-                                    <h5 class="title">TT Trump tăng tốc trừng phạt TQ khi bầu cử chỉ cách hơn 100 ngày</h5>
-                                    <div class="interactive">
-                                        <i class="far fa-heart"></i>
-                                        <i class="far fa-comment"></i>
-                                    </div>
-                                </div>
-
-                            </div>
 
                         </div>
                     </div>
@@ -240,42 +206,23 @@
         <div class="popular-story">
             <div class="topic">Bài viết phổ biến</div>
             <div class="populary-story-content">
-                <div class="popular-story-item popular1">
-                    <div class="wrapp-image">
-                        <img src="Assets/images/popular3.jpg" alt="">
-                    </div>
-                    <div class="content">
-                        <span class="tag">Kinh tế</span><span class="tag">Thể thao</span>
-                        <h5 class="title">Đây là title</h5>
-                    </div>
-                </div>
-                <div class="popular-story-item popular2">
-                    <div class="wrapp-image">
-                        <img src="Assets/images/popular3.jpg" alt="">
-                    </div>
-                    <div class="content">
-                        <span class="tag">Kinh tế</span><span class="tag">Thể thao</span>
-                        <h5 class="title">Đây là title</h5>
-                    </div>
-                </div>
-                <div class="popular-story-item popular3">
-                    <div class="wrapp-image">
-                        <img src="Assets/images/popular3.jpg" alt="">
-                    </div>
-                    <div class="content">
-                        <span class="tag">Kinh tế</span><span class="tag">Thể thao</span>
-                        <h5 class="title">Đây là title</h5>
-                    </div>
-                </div>
-                <div class="popular-story-item popular4">
-                    <div class="wrapp-image">
-                        <img src="Assets/images/popular3.jpg" alt="">
-                    </div>
-                    <div class="content">
-                        <span class="tag">Kinh tế</span><span class="tag">Thể thao</span>
-                        <h5 class="title">Đây là title</h5>
-                    </div>
-                </div>
+                <?php
+                    for ($i = 0 ; $i < count($listPPPost);$i++){
+                        ?>
+                        <div class="popular-story-item popular1">
+                            <div class="wrapp-image">
+                               <span><?= $listPPPost[$i][11] ?></span>
+                            </div>
+                            <div class="content">
+                                <span class="tag"><?= $listPPPost[$i][12]->name ?></span>
+                                <h5 class="title" style="color: black"><?= $listPPPost[$i][2] ?></h5>
+                            </div>
+                        </div>
+                <?php
+                    }
+                ?>
+
+
 
             </div>
             </div>
@@ -283,53 +230,36 @@
     </section>
     <section class="section1">
         <div class="business item">
-            <div class="topic">Kinh tế</div>
+            <div class="topic">Tài chính</div>
             <div class="business-content">
 
                 <div class="main">
-                    <img src="Assets/images/tech1.jpg" alt="">
+                    <?= $listBussinessPost[0][11]?>
                     <div class="content">
-                        <span class="tag">Kinh tế</span>
-                        <h5 class="title">Thể thao</h5>
+                        <span class="tag"><?= $listBussinessPost[0][12]->name?></span>
+                        <h5 class="title" style="color: #fff"><?= $listBussinessPost[0][2]?></h5>
                     </div>
                 </div>
                 <div class="sub">
-                    <div class="sub-item">
-                        <div class="wrapp-image">
-                            <img src="Assets/images/tech2.jpg" alt="">
-                        </div>
-                        <div class="content">
-                            <span class="tag">Kinh tế</span>
-                            <h5 class="title">Thể thao</h5>
-                        </div>
-                    </div>
-                    <div class="sub-item">
-                        <div class="wrapp-image">
-                            <img src="Assets/images/tech3.jpg" alt="">
-                        </div>
-                        <div class="content">
-                            <span class="tag">Kinh tế</span>
-                            <h5 class="title">Thể thao</h5>
-                        </div>
-                    </div>
-                    <div class="sub-item">
-                        <div class="wrapp-image">
-                            <img src="Assets/images/tech3.jpg" alt="">
-                        </div>
-                        <div class="content">
-                            <span class="tag">Kinh tế</span>
-                            <h5 class="title">Thể thao</h5>
-                        </div>
-                    </div>
-                    <div class="sub-item">
-                        <div class="wrapp-image">
-                            <img src="Assets/images/tech3.jpg" alt="">
-                        </div>
-                        <div class="content">
-                            <span class="tag">Kinh tế</span>
-                            <h5 class="title">Thể thao</h5>
-                        </div>
-                    </div>
+                    <?php
+                        for ($i = 1 ; $i < count($listBussinessPost) ; $i++){
+                            ?>
+                            <div class="sub-item">
+                                <div class="wrapp-image">
+                                    <?= $listBussinessPost[$i][11]?>
+                                </div>
+                                <div class="content">
+                                    <span class="tag"><?= $listBussinessPost[$i][12]->name?></span>
+                                    <h5 class="title" style="font-size: 15px;margin-top: 10px"><?= $listBussinessPost[$i][2]?></h5>
+                                </div>
+                            </div>
+                    <?php
+                        }
+
+                    ?>
+
+
+
 
                 </div>
 
@@ -339,49 +269,30 @@
             <div class="topic">Thể thao</div>
             <div class="sport-content">
                 <div class="main">
-                    <img src="Assets/images/tech1.jpg" alt="">
+                    <?= $listSportPost[0][11] ?>
                     <div class="content">
-                        <span class="tag">Kinh tế</span>
-                        <h5 class="title">Thể thao</h5>
+                        <span class="tag"><?= $listSportPost[0][12]->name ?></span>
+                        <h5 class="title"><?= $listSportPost[0][2] ?></h5>
                     </div>
                 </div>
                 <div class="sub">
-                    <div class="sub-item">
-                        <div class="wrapp-image">
-                            <img src="Assets/images/tech2.jpg" alt="">
+                    <?php
+                    for ($i = 1 ; $i < count($listSportPost) ; $i++){
+                        ?>
+                        <div class="sub-item">
+                            <div class="wrapp-image">
+                                <?= $listSportPost[$i][11]?>
+                            </div>
+                            <div class="content">
+                                <span class="tag"><?= $listSportPost[$i][12]->name?></span>
+                                <h5 class="title" style="font-size: 15px;margin-top: 10px"><?= $listSportPost[$i][2]?></h5>
+                            </div>
                         </div>
-                        <div class="content">
-                            <span class="tag">Kinh tế</span>
-                            <h5 class="title">Thể thao</h5>
-                        </div>
-                    </div>
-                    <div class="sub-item">
-                        <div class="wrapp-image">
-                            <img src="Assets/images/tech3.jpg" alt="">
-                        </div>
-                        <div class="content">
-                            <span class="tag">Kinh tế</span>
-                            <h5 class="title">Thể thao</h5>
-                        </div>
-                    </div>
-                    <div class="sub-item">
-                        <div class="wrapp-image">
-                            <img src="Assets/images/tech3.jpg" alt="">
-                        </div>
-                        <div class="content">
-                            <span class="tag">Kinh tế</span>
-                            <h5 class="title">Thể thao</h5>
-                        </div>
-                    </div>
-                    <div class="sub-item">
-                        <div class="wrapp-image">
-                            <img src="Assets/images/tech3.jpg" alt="">
-                        </div>
-                        <div class="content">
-                            <span class="tag">Kinh tế</span>
-                            <h5 class="title">Thể thao</h5>
-                        </div>
-                    </div>
+                        <?php
+                    }
+
+                    ?>
+
 
                 </div>
             </div>
@@ -390,49 +301,29 @@
             <div class="topic">Giải trí</div>
             <div class="entertaiment-content">
                 <div class="main">
-                    <img src="Assets/images/tech1.jpg" alt="">
+                    <?= $listEntertainPost[0][11] ?>
                     <div class="content">
-                        <span class="tag">Kinh tế</span>
-                        <h5 class="title">Thể thao</h5>
+                        <span class="tag"><?= $listEntertainPost[0][12]->name ?></span>
+                        <h5 class="title"><?= $listEntertainPost[0][2] ?></h5>
                     </div>
                 </div>
                 <div class="sub">
-                    <div class="sub-item">
-                        <div class="wrapp-image">
-                            <img src="Assets/images/tech2.jpg" alt="">
+                    <?php
+                    for ($i = 1 ; $i < count($listEntertainPost) ; $i++){
+                        ?>
+                        <div class="sub-item">
+                            <div class="wrapp-image">
+                                <?= $listEntertainPost[$i][11]?>
+                            </div>
+                            <div class="content">
+                                <span class="tag"><?= $listEntertainPost[$i][12]->name?></span>
+                                <h5 class="title" style="font-size: 15px;margin-top: 10px"><?= $listEntertainPost[$i][2]?> </h5>
+                            </div>
                         </div>
-                        <div class="content">
-                            <span class="tag">Kinh tế</span>
-                            <h5 class="title">Thể thao</h5>
-                        </div>
-                    </div>
-                    <div class="sub-item">
-                        <div class="wrapp-image">
-                            <img src="Assets/images/tech3.jpg" alt="">
-                        </div>
-                        <div class="content">
-                            <span class="tag">Kinh tế</span>
-                            <h5 class="title">Thể thao</h5>
-                        </div>
-                    </div>
-                    <div class="sub-item">
-                        <div class="wrapp-image">
-                            <img src="Assets/images/tech3.jpg" alt="">
-                        </div>
-                        <div class="content">
-                            <span class="tag">Kinh tế</span>
-                            <h5 class="title">Thể thao</h5>
-                        </div>
-                    </div>
-                    <div class="sub-item">
-                        <div class="wrapp-image">
-                            <img src="Assets/images/tech3.jpg" alt="">
-                        </div>
-                        <div class="content">
-                            <span class="tag">Kinh tế</span>
-                            <h5 class="title">Thể thao</h5>
-                        </div>
-                    </div>
+                        <?php
+                    }
+
+                    ?>
 
                 </div>
 

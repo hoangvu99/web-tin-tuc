@@ -58,6 +58,7 @@ class UserController {
         $username = $_POST['username'];
         $password = $_POST['password'];
         $result = $this->userRegisModel->saveUser($email,$username,$password);
+
         require_once SYSTEM_PATH."/View/signupsucess.php";
     }
 

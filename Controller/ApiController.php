@@ -12,7 +12,7 @@ class ApiController{
 
     function getListUserName(){
 
-        $listUserName= $this->userModel->getListUserName();
+        $listUserName= $this->userModel->getListUser();
 
         echo json_encode($listUserName);
 

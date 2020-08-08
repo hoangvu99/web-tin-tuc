@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded',function () {
     let data = document.getElementsByClassName('grid-item');
     let btns_remove = document.getElementsByClassName('box-wrapp-button-remove');
-    let fill = document.getElementById('fill');
+    let fill = document.getElementById('post-fill');
     let sort = document.getElementById('sort');
     let modal = document.getElementById('modal-view-post-item');
     let btn_close = document.getElementById('btn-close-post');

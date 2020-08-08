@@ -58,5 +58,100 @@ class PostModel extends BaseModel {
         parent::excuteQuery($query);
     }
 
+    function loadPostByUserId($userId){
+        $query = "select * from posts where user_id = '$userId'";
+        $result = parent::excuteQuery($query);
+        $data = [];
+        foreach ($result->fetch_all() as $item){
+            array_push($data,$item);
+        }
+        return $data;
+    }
+
+    function loadLatestPost(){
+        $query = "select * from posts order by id desc";
+        $result = parent::excuteQuery($query);
+        $data = $result->fetch_all()[0];
+        $categoryModel = new CategoryModel();
+        $category = $categoryModel->getCategoryById($data[1]);
+        array_push($data,$category);
+        return $data;
+    }
+
+    function loadListTrendingPost(){
+        $query = "select * from posts order by count_view desc limit 5";
+        $result = parent::excuteQuery($query);
+        $data = [];
+        $categoryModel = new CategoryModel();
+
+        foreach ($result->fetch_all() as $item){
+            $category = $categoryModel->getCategoryById($item[1]);
+            array_push($item,$category);
+            array_push($data,$item);
+
+        }
+        return $data;
+    }
+
+    function loadListPopularPost(){
+        $query = "select * from posts order by count_reaction desc limit 4";
+        $result = parent::excuteQuery($query);
+        $data = [];
+        $categoryModel = new CategoryModel();
+
+        foreach ($result->fetch_all() as $item){
+            $category = $categoryModel->getCategoryById($item[1]);
+            array_push($item,$category);
+            array_push($data,$item);
+
+        }
+        return $data;
+    }
+
+    function loadListBussinessPost(){
+        $query = "select * from posts where category_id='3'  limit 5";
+        $result = parent::excuteQuery($query);
+        $data = [];
+        $categoryModel = new CategoryModel();
+
+        foreach ($result->fetch_all() as $item){
+            $category = $categoryModel->getCategoryById($item[1]);
+            array_push($item,$category);
+            array_push($data,$item);
+
+        }
+        return $data;
+    }
+
+    function loadListSportPost(){
+        $query = "select * from posts where category_id='4'  limit 5";
+        $result = parent::excuteQuery($query);
+        $data = [];
+        $categoryModel = new CategoryModel();
+
+        foreach ($result->fetch_all() as $item){
+            $category = $categoryModel->getCategoryById($item[1]);
+            array_push($item,$category);
+            array_push($data,$item);
+
+        }
+        return $data;
+    }
+    function loadListEntertaimentPost(){
+        $query = "select * from posts where category_id='5'  limit 5";
+        $result = parent::excuteQuery($query);
+        $data = [];
+        $categoryModel = new CategoryModel();
+
+        foreach ($result->fetch_all() as $item){
+            $category = $categoryModel->getCategoryById($item[1]);
+            array_push($item,$category);
+            array_push($data,$item);
+
+        }
+        return $data;
+    }
+
+
 
 }

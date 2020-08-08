@@ -143,6 +143,7 @@ body{
     background: #fff;
     box-shadow: 0 6px 50px 20px rgba(36, 37, 38, 0.08);
     padding: 10px;
+    display: none;
 
 }
 .noti-box {
@@ -150,12 +151,11 @@ body{
     right: 5%;
     overflow: auto;
     height: 400px;
-    opacity: 0;
+
 }
 .user-box{
     top: 100%;
     right: 2%;
-    opacity: 0;
     height: 300px;
 
 }
@@ -208,7 +208,7 @@ body{
 }
 .show{
     z-index: 1;
-    opacity: 1;
+    display: block;
 }
 /*end main-menu*/
 /*main-content*/
@@ -462,7 +462,7 @@ body{
     display: flex;
 }
 .section1 {
-    height: 690px;
+    height: 820px;
 }
 .section1 .item{
     width: 31.5%;
@@ -493,50 +493,78 @@ body{
 }
 .section1 .main{
     width: 100%;
-    height: 45%;
+    height: 40%;
     overflow: hidden;
 }
 .main img {
     width: 100%;
     height: 100%;
     position: relative;
+    opacity: 0.9;
 }
-.business-content .main{
+.main{
     position: relative;
 }
 
-.business-content .main .content {
+.main .content {
     position: absolute;
-    top: 80%;
+    top: 75%;
     left: 3%;
+    height: 300px;
+}
+.content .title {
+    color: #fff;
+
 }
 .section1 .sub {
     width: 100%;
-    height: 55%;
+    height: 60%;
     padding: 10px;
 }
 .sub .sub-item{
     display: flex;
     width: 100%;
-    margin-bottom: 10px;
+    height: 20%;
+    margin-bottom: 20px;
 }
 .sub-item .wrapp-image{
-    width: 30%;
+    width: 35%;
     height: 100%;
     overflow: hidden;
 }
 .sub-item img {
     width: 100%;
     height: 100%;
+
 }
 .sub-item .content{
     padding: 10px;
+    width: 65%;
+    height: 100%;
 }
-.business-content .tag{
+.sub-item .title{
+    color: black;
+}
+.tag{
     background: red;
     color: #fff;
-}
 
+
+}
+.sport-content .main .content {
+    position: absolute;
+    top: 80%;
+    left: 3%;
+}
+.entertaiment-content ,
+.sport-content {
+    position: relative;
+}
+.entertaiment-content .main .content {
+    position: absolute;
+    top: 80%;
+    left: 3%;
+}
 .section2{
     height: 1190px;
 }
@@ -641,5 +669,11 @@ body{
 }
 .footer .social-icon i:hover{
     transform: scale(1.1);
+}
+a:hover{
+    text-decoration: none;
+}
+a {
+    color: black;
 }
 

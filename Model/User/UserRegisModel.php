@@ -14,4 +14,22 @@ class UserRegisModel extends BaseModel {
         return $result;
     }
 
+    function loadAllPendingRegis(){
+        $query = "select * from usersregis";
+        $result = parent::excuteQuery($query);
+        $data = [];
+        foreach ($result->fetch_all() as $item){
+            array_push($data,$item);
+        }
+        return $data;
+    }
+
+    function deleteRegister($listRegister){
+        for ($i = 0 ; $i < count($listRegister); $i++){
+            $id = $listRegister[$i][0];
+            $query = "delete from  usersregis where id = '$id'";
+            parent::excuteQuery($query);
+        }
+    }
+
 }

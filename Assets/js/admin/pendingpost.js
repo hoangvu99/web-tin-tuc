@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded',function () {
 
             }
         }
-        console.log(data);
+
 
         $.ajax({
             url:"http://localhost/web-tin-tuc/index.php?c=Admin&a=addPost",
@@ -53,11 +53,7 @@ document.addEventListener('DOMContentLoaded',function () {
 
 
         }).then(function () {
-            for(let i = 0 ; i < checkboxitems.length; i++ ){
-                if(checkboxitems[i].checked=true){
-                    checkboxitems[i].parentNode.parentNode.remove();
-                }
-            }
+            window.location.href="http://localhost/web-tin-tuc/index.php?c=admin&v=pending-post";
         });
 
 

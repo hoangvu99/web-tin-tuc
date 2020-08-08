@@ -19,6 +19,12 @@ class HomeController{
             $view = $_GET['view'];
         }else{
             $data= $this->categoryModel->getAllCategory();
+            $latestPost = $this->postModel->loadLatestPost();
+            $listTrendingPost = $this->postModel->loadListTrendingPost();
+            $listPPPost = $this->postModel->loadListPopularPost();
+            $listBussinessPost = $this->postModel->loadListBussinessPost();
+            $listSportPost = $this->postModel->loadListSportPost();
+            $listEntertainPost = $this->postModel->loadListEntertaimentPost();
             require_once SYSTEM_PATH . "\View\home.php";
         }
 

@@ -15,7 +15,7 @@
 
         <div class="slider">
             <div class="logo">
-                <a href="https://www.facebook.com/VuAndre99/" class="box-logo">
+                <a href="http://localhost/web-tin-tuc/index.php" class="box-logo">
                     <i class="fas fa-gem"></i>
                 </a>
             </div>
@@ -71,12 +71,12 @@
                             <span class="text">Yêu cầu đăng kí</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="http://localhost/web-tin-tuc/index.php?c=admin&v=pending-comment" class="nav-link" id="">
-                            <i class="fas fa-comments icon"></i>
-                            <span class="text">Phê duyệt bình luận</span>
-                        </a>
-                    </li>
+<!--                    <li class="nav-item">-->
+<!--                        <a href="http://localhost/web-tin-tuc/index.php?c=admin&v=pending-comment" class="nav-link" id="">-->
+<!--                            <i class="fas fa-comments icon"></i>-->
+<!--                            <span class="text">Phê duyệt bình luận</span>-->
+<!--                        </a>-->
+<!--                    </li>-->
 
 
 
@@ -163,17 +163,85 @@
                     </section>
 
                 </div>
-                <div class="my-post box" id="my-post"></div>
+                <div class="my-post box" id="my-post">
+                    <div class="filter">
+                        <div class="fill">
+                            <select name="" id="fill" class="form-control">
+                                <option value="0">Tất cả</option>
+                                <?php
+                                foreach ($categories as $item){
+                                    ?>
+                                    <option value="<?=$item->id?>"> <?=$item->name?></option>
+                                    <?php
+                                }
+
+                                ?>
+
+                            </select>
+
+                            <select name="" id="sort" class="form-control">
+                                <option value="1">Cũ nhất</option>
+                                <option value="2">Mới nhất</option>
+                                <option value="2">Tương tác cao nhất</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="grid-container">
+                        <?php
+                        foreach ($mypost as $post){
+                            ?>
+                            <div class="grid-item" data-postid="<?= $post[0] ?>" data-categoryId="<?= $post[1] ?>">
+
+                                <div class="list-post-item">
+                                    <div class="box-wrapp-button-remove"> <i class='fas fa-trash-alt button-remove-post' ></i></div>
+                                    <div class="image-thumbnail">
+                                        <span><?= $post[11] ?></span>
+                                    </div>
+                                    <div class="post-detail">
+                                        <h5 class="title-post"><?= $post[2] ?></h5>
+                                        <p class="intro-post"><?= $post[3] ?>...</p>
+
+                                    </div>
+                                    <div class="reaction">
+                                        <div class="reaction-item" style="justify-content: normal;width: 40%">
+
+                                        </div>
+                                        <div class="reaction-item" style="width: 20%">
+                                            <span><i class="fas fa-eye"></i><?= $post[9] ?></span>
+                                        </div>
+                                        <div class="reaction-item" style="width: 20%">
+                                            <span><i class="far fa-heart"></i><?= $post[10] ?></span>
+                                        </div>
+                                        <div class="reaction-item" style="width: 20%">
+                                            <span><i class="far fa-comment"></i><?= $post[5] ?></span>
+                                        </div>
+
+
+
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <?php
+                        }
+
+                        ?>
+                    </div>
+                </div>
                 <div class="add-post box" id="add-post">
                     <div class="tools">
+
                         <button class="btn btn-danger" id="btn-create"><i class="fas fa-plus"></i></button>
+                        <button class="btn btn-danger" id="btn-category"><i class="fas fa-mouse-pointer"></i></button>
                         <button class="btn btn-danger" id="btn-title"><i class="fas fa-heading"></i></button>
                         <button class="btn btn-danger" id="btn-slug"><i class="fas fa-bookmark"></i></button>
                         <button class="btn btn-danger" id="btn-intro"><i class="fab fa-invision"></i></button>
 
                         <button class="btn btn-danger" id="btn-image"><i class="fas fa-images"></i></button>
                         <button class="btn btn-danger" id="btn-text"><i class="fas fa-align-justify"></i></button>
-                        <button class="btn btn-danger" id="btn-category"><i class="fas fa-mouse-pointer"></i></button>
+
                         <button class="btn btn-danger" id="btn-save"><i class="fas fa-save"></i></button>
                         <button class="btn btn-danger" id="btn-clear"><i class="fas fa-trash-alt"></i></button>
                     </div>
@@ -241,7 +309,7 @@
                 <div class="list-post box" id="list-post">
                     <div class="filter">
                        <div class="fill">
-                           <select name="" id="fill" class="form-control">
+                           <select name="" id="post-fill" class="form-control">
                                <option value="0">Tất cả</option>
                                <?php
                                     foreach ($categories as $item){
@@ -306,9 +374,105 @@
                     </div>
 
                 </div>
-                <div class="user box" id="user">6</div>
-                <div class="pending-regis box" id="pending-regis">7</div>
-                <div class="pending-comment box" id="pending-comment">8</div>
+                <div class="user box" id="user">
+                        <div class="table-data-user">
+                            <div class="fillter">
+                                <select name="" class="user-filler form-control" id="user-fill">
+                                    <option value="all">Tất cả</option>
+                                    <option value="ADMIN">Admin</option>
+                                    <option value="CREATOR">Creator</option>
+                                    <option value="USER">User</option>
+                                </select>
+                                <input type="text" class="form-control" id="user-search" placeholder="Nhập tên người dùng">
+
+                            </div>
+                            <table class="table table-bordered table-light">
+                                <thead>
+                                    <tr>
+                                        <th class="th-stt">STT</th>
+                                        <th class="th-email">Email</th>
+                                        <th class="th-username">User Name</th>
+                                        <th class="th-gender">Giới tính</th>
+                                        <th class="th-permission">Permission</th>
+                                        <th class="th-state">State</th>
+                                        <th class="th-remove"></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-body">
+                                    <?php
+                                        for ($i = 0 ; $i < count($listUser) ; $i++){
+                                            ?>
+                                        <tr class="user-object" data-permission="<?= $listUser[$i][6]?>">
+                                            <td><?= $i+1?></td>
+                                            <td><?= $listUser[$i][2]?></td>
+                                            <td><?= $listUser[$i][1]?></td>
+                                            <td><?= $listUser[$i][4]?></td>
+                                            <td><?= $listUser[$i][6]?></td>
+                                            <td><?php if ($listUser[$i][7] == 1){
+                                                    echo"<i class='fas fa-circle' style='color: #00ff00'></i>";
+                                                }else{
+                                                    echo"<i class='fas fa-circle' style='color: red'></i>";
+                                                }?>
+                                            </td>
+                                            <td><i data-userid="<?= $listUser[$i][0]?>" class="fas fa-trash-alt remove-user"></i></td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+
+                </div>
+                <div class="pending-regis box" id="pending-regis">
+                    <div class="table-data-user">
+                        <div class="fillter">
+
+                            <input type="text" class="form-control register-search" id="register-search" placeholder="Nhập tên người dùng">
+                            <button class="btn btn-danger" id="approval-register">Phê duyệt</button>
+                            <button class="btn btn-danger" id="approval-all-register">Phê duyệt tất cả</button>
+                        </div>
+                        <table class="table table-bordered table-light">
+                            <thead>
+                            <tr>
+                                <th class="th-stt">STT</th>
+                                <th class="th-email">Email</th>
+                                <th class="th-username">User Name</th>
+                                <th class="th-gender">Password</th>
+                                <th class="th-permission">Permission</th>
+                                <th class="th-state">State</th>
+                                <th class="th-remove"></th>
+                                <th class="th-check-box"><input type="checkbox" class="form-control register-checkbox-all"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+                            for ($i = 0 ; $i < count($listRegister) ; $i++){
+                                ?>
+                                <tr class="register-object" data-permission="<?= $listUser[$i][6]?>">
+                                    <td data-registerid="<?= $listRegister[$i][0]?>"><?= $i+1?></td>
+                                    <td><?= $listRegister[$i][1]?></td>
+                                    <td><?= $listRegister[$i][2]?></td>
+                                    <td><?= $listRegister[$i][3]?></td>
+                                    <td><select name="" class="form-control" id="">
+                                            <option value="USER">User</option>
+                                            <option value="CREATOR">Creator</option>
+                                            <option value="ADMIN">Admin</option>
+                                        </select>
+                                    </td>
+                                    <td>Đang chờ phê duyệt</td>
+                                    <td><i data-userid="<?= $listUser[$i][0]?>" class="fas fa-trash-alt remove-register"></i></td>
+                                    <td><input type="checkbox" class="form-control register-checkbox"> </td>
+                                </tr>
+                                <?php
+                            }
+                            ?>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
             </div>
 
         </div>
@@ -339,5 +503,8 @@
     <script src="Assets/js/admin/addpost.js"></script>
     <script src="Assets/js/admin/pendingpost.js"></script>
     <script src="Assets/js/admin/listpost.js"></script>
+    <script src="Assets/js/admin/listuser.js"></script>
+    <script src="Assets/js/admin/register.js"></script>
+
 </body>
 </html>

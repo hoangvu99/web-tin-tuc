@@ -75,4 +75,29 @@ class UserModel extends BaseModel {
         return $userId;
 
     }
+
+    function getListUser(){
+        $query = "select * from users";
+        $result = parent::excuteQuery($query);
+        $data = [];
+        foreach ($result->fetch_all() as $item){
+            array_push($data,$item);
+        }
+        return $data;
+    }
+    function deleteUserByUserId($id){
+        $query = "delete from users wher id = '$id'";
+        parent::excuteQuery($query);
+    }
+
+    function addUser($listRegister){
+        for($i = 0 ; $i < count($listRegister) ; $i++){
+            $email = $listRegister[$i][1];
+            $username = $listRegister[$i][2];
+            $password = $listRegister[$i][3];
+            $role = $listRegister[$i][4];
+            $query = "insert into users (email,username,password,role,active,avatar) values('$email','$username','$password','$role','0','default.jpg')";
+            parent::excuteQuery($query);
+        }
+    }
 }

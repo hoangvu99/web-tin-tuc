@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded',function () {
     function createTitle(){
         let input_title = "<tr>" +
             "<td>Tiêu đề</td> " +
-            "<td><input type='text' class='form-control title-post'></td>" +
+            "<td><input type='text' class='form-control title-input'></td>" +
             " <td><button class='btn btn-danger btn-remove' id='btn-remove' '><i class='fas fa-times'  ></i></button></td>" +
             "</tr>";
         new_post.insertAdjacentHTML("beforeend",input_title);
@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded',function () {
     function createIntro() {
         let input_intro = "<tr>" +
             "<td>Giới thiệu</td> " +
-            "<td><input type='text' class='form-control intro-post'></td>" +
+            "<td><input type='text' class='form-control intro-input'></td>" +
             " <td><button class='btn btn-danger btn-remove' id='btn-remove' '><i class='fas fa-times'  ></i></button></td>" +
             "</tr>";
         new_post.insertAdjacentHTML("beforeend",input_intro);
@@ -95,13 +95,13 @@ document.addEventListener('DOMContentLoaded',function () {
     }
 
     function createPost(){
-        let title = document.getElementsByClassName('title-post');
+        let title = document.getElementsByClassName('title-input');
         let images = document.getElementsByClassName('image');
         let contents = document.getElementsByClassName('content-post');
         let select = document.getElementById('categories-option');
         let slug = document.getElementById('slug');
         let value = select.options[select.selectedIndex].value;
-        let intro = document.getElementsByClassName('intro-post');
+        let intro = document.getElementsByClassName('intro-input');
 
         let raw_text = "";
 
@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded',function () {
         let arr = raw_text.split(' ');
         let content_post = "";
 
-
+        let image_thumbnail = "";
         for (let i = 0 ; i < arr.length ; i++){
             for (let j = 0 ; j < images.length ;j++){
                 if (arr[i] == images[j].value){
@@ -120,13 +120,14 @@ document.addEventListener('DOMContentLoaded',function () {
                     let img = '<img src="Assets/images/' +
                         '' +img_url+
                         '">' ;
+                    image_thumbnail = img;
                     arr[i] = img;
 
                 }
             }
             content_post+=arr[i]+" ";
         }
-        let image_thumbnail = arr[0];
+
         console.log(image_thumbnail);
         $.ajax({
             url:"http://localhost/web-tin-tuc/index.php?c=admin&a=addPendingPost",
@@ -210,7 +211,7 @@ document.addEventListener('DOMContentLoaded',function () {
 
 
 
-        let title = document.getElementsByClassName('title-post')[0];
+        let title = document.getElementsByClassName('title-input')[0];
         let t = title.value.trim();
         let sl = "";
         for (let i = 0 ; i < t.length ; i++){
@@ -249,6 +250,7 @@ document.addEventListener('DOMContentLoaded',function () {
 
         new_post.insertAdjacentHTML('beforeend',select_input);
         addOption();
+        addEventButton();
     }
 
     function addOption(){
