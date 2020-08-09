@@ -131,7 +131,7 @@ body{
     top: 120%;
     padding: 20px;
     background: linear-gradient(125deg,#6a89cc,#b8e994);
-    opacity: 0;
+    display: none;
     z-index: 0;
     box-shadow: 0 6px 50px 20px rgba(36, 37, 38, 0.08);
     width: 300px ;
@@ -566,7 +566,7 @@ body{
     left: 3%;
 }
 .section2{
-    height: 1190px;
+    height: 1650px;
 }
 
 .section2 .topic{
@@ -583,7 +583,7 @@ body{
 .section2 .custorm-post{
     width: 60%;
     height: 100%;
-    overflow: auto;
+
 }
 .custorm-post-item{
     width: 100%;
@@ -605,6 +605,7 @@ body{
     width: 70%;
     height: 100%;
     padding: 10px;
+    overflow: auto;
 }
 .custorm-post-item .tag {
     background: red;

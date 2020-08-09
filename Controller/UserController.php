@@ -2,16 +2,19 @@
 include_once SYSTEM_PATH."/Model/Category/CategoryModel.php";
 include_once SYSTEM_PATH."/Model/User/UserModel.php";
 include_once SYSTEM_PATH."/Model/User/UserRegisModel.php";
+include_once SYSTEM_PATH."/Model/Post/PostModel.php";
 class UserController {
 
     public $categoryModel;
     public $userModel;
-
+    public $userRegisModel;
+    public $postModel;
     public function __construct()
     {
         $this->categoryModel = new CategoryModel();
         $this->userModel = new UserModel();
         $this->userRegisModel = new UserRegisModel();
+        $this->postModel = new PostModel();
     }
 
     function doLogin(){
@@ -26,7 +29,15 @@ class UserController {
                 setcookie("name",$user->username,$expire);
                 setcookie("role",$user->role,$expire);
                 setcookie("avatar",$user->avatar,$expire);
-                header("location: http://localhost/web-tin-tuc/index.php");
+
+                if (isset($_GET['s'])){
+                    $slug = $_GET['s'];
+
+                    header("location: http://localhost/web-tin-tuc/index.php?c=Post&a=viewPost&s=$slug");
+                }else{
+                    header("location: http://localhost/web-tin-tuc/index.php");
+                }
+
             }else {
                 echo "dang nhap that bai";
             }
@@ -40,7 +51,13 @@ class UserController {
         setcookie("avatar", "", time() - 3600);
         setcookie("id", "", time() - 3600);
         setcookie("role","",time()-3600);
-        header("location: http://localhost/web-tin-tuc/index.php");
+        if (isset($_GET['s'])){
+            $slug = $_GET['s'];
+
+            header("location: http://localhost/web-tin-tuc/index.php?c=Post&a=viewPost&s=$slug");
+        }else{
+            header("location: http://localhost/web-tin-tuc/index.php");
+        }
     }
 
     function signUp(){

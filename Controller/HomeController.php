@@ -25,7 +25,7 @@ class HomeController{
             $listBussinessPost = $this->postModel->loadListBussinessPost();
             $listSportPost = $this->postModel->loadListSportPost();
             $listEntertainPost = $this->postModel->loadListEntertaimentPost();
-            require_once SYSTEM_PATH . "\View\home.php";
+            require_once SYSTEM_PATH . "/View/home.php";
         }
 
 

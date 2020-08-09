@@ -130,7 +130,7 @@
                                 <button class="form-control btn btn-login" type="submit" id="btn-login">Đăng nhập</button>
                             </div>
                         </form>
-                        <span>Chưa có tài khoản ? <a href="">Đăng kí tại đây</a></span>
+                        <span>Chưa có tài khoản ? <a href="http://localhost/web-tin-tuc/index.php?c=user&a=signUp">Đăng kí tại đây</a></span>
                     </div>
             <?php
                 }
@@ -151,9 +151,9 @@
                     <div  class="content-left" >
                         <div class="topic">Bài viết mới nhất</div>
                         <div class="new-post">
-                            <a href="" data-postid="<?= $latestPost[0] ?>">
+                            <a href="http://localhost/web-tin-tuc/index.php?c=Post&a=viewPost&s=<?=$latestPost[6]?>" data-postid="<?= $latestPost[0] ?>">
                                 <div class="wrapp-image">
-                                    <p><?= $latestPost[11] ?></p>
+                                    <p><?=$latestPost[11]?></p>
                                 </div>
                                 <div class="description-post">
                                     <span class="tag"><?= $latestPost[12]->name?></span>

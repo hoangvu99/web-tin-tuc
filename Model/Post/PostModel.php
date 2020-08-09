@@ -3,6 +3,7 @@ include_once SYSTEM_PATH."/Model/BaseModel.php";
 include_once SYSTEM_PATH."/Model/Post/Post.php";
 include_once SYSTEM_PATH."/Model/User/UserModel.php";
 include_once SYSTEM_PATH."/Model/Category/CategoryModel.php";
+
 class PostModel extends BaseModel {
 
 
@@ -19,8 +20,8 @@ class PostModel extends BaseModel {
 
     }
 
-    function loadPostByPostId($postId){
-        $query = "select * from posts where id = '$postId'";
+    function loadPostByPostId($slug){
+        $query = "select * from posts where slug = '$slug'";
         $result = parent::excuteQuery($query);
         $post = $result->fetch_object();
         return $post;
@@ -152,6 +153,72 @@ class PostModel extends BaseModel {
         return $data;
     }
 
+    function getListTitle(){
+        $query = "select * from posts";
+        $result = parent::excuteQuery($query);
+        $data=[];
+        foreach ($result->fetch_all() as $item){
+            array_push($data,$item);
+        }
+        return $data;
+    }
+
+    function editSlug($list){
+        for ($i = 0 ; $i < count($list);$i++){
+            $id = $list[$i][0];
+            $slug = $list[$i][1];
+            $query = "update posts set slug ='$slug' where id = '$id'";
+            parent::excuteQuery($query);
+        }
+    }
+
+    function addComment($userid,$postid,$name,$content){
+
+        $username = $name;
+        if ($username == ""){
+            $userModel = new UserModel();
+            $username = $userModel->getUserById($userid)->username;
+        }
+
+        $query = "insert into comments (user_id,post_id,content,username) values('$userid','$postid','$content','$username')";
+        parent::excuteQuery($query);
+
+    }
+
+    function getListCommentByPostId($postid){
+        $query = "select * from comments where post_id = '$postid'";
+        $result = parent::excuteQuery($query);
+        $data = [];
+        $userModel = new UserModel();
+        foreach ($result->fetch_all() as $item){
+            $user = $userModel->getUserById($item[1]);
+
+            $listReply = $this->getListReplyCommentByCommentId($item[0]);
+            array_push($item,$user);
+            array_push($item,$listReply);
+            array_push($data,$item);
+        }
+        return $data;
+    }
+
+    function addReplyComment($userid,$postid,$username,$content,$commentid){
+        $query = "insert into comment_reply (user_id,post_id,comment_id,username,content) values('$userid','$postid','$commentid','$username','$content')";
+        parent::excuteQuery($query);
+    }
+
+    function getListReplyCommentByCommentId($commentid){
+        $query = "select * from comment_reply where comment_id ='$commentid'";
+        $result = parent::excuteQuery($query);
+        $data = [];
+        $userModel = new UserModel();
+        foreach ($result->fetch_all() as $item){
+            $user = $userModel->getUserById($item[5]);
+            array_push($item,$user);
+            array_push($data,$item);
+        }
+        return $data;
+
+    }
 
 
 }
