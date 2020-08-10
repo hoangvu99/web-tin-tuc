@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded',function () {
 
     let data = document.getElementsByClassName('register-object');
     let register_search = document.getElementById('register-search');
-    let icon_remove = document.getElementsByClassName('remove-user');
+    let icon_remove = document.getElementsByClassName('remove-register');
 
     let registercheckboxall = document.getElementsByClassName('register-checkbox-all')[0];
     let registercheckbox = document.getElementsByClassName('register-checkbox');
@@ -99,21 +99,22 @@ document.addEventListener('DOMContentLoaded',function () {
         }
     }
 
-    function removeUserByUserId(){
-        let id = this.dataset.userid;
+    function removeRegisterByUserId(){
+        let id = this.dataset.registerid;
         this.parentNode.parentNode.remove();
-        console.log(id);
+
         $.ajax({
-            url:"http://localhost/web-tin-tuc/index.php?c=admin&a=deleteUserByUserId",
+            url:"http://localhost/web-tin-tuc/index.php?c=admin&a=deleteRegisterById",
             type:"post",
             data:{id:id}
         }).then(function () {
-            console.log("Xóa thành viên thành công");
+
 
         });
     }
+
     for (let i = 0 ; i < icon_remove.length ; i++){
-        icon_remove[i].addEventListener('click',removeUserByUserId);
+        icon_remove[i].addEventListener('click',removeRegisterByUserId);
     }
 
     function checkboxallClick() {

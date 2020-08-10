@@ -34,9 +34,10 @@ document.addEventListener('DOMContentLoaded',function () {
             }).then(function () {
                 text.value="";
                 let arr = getCookie();
-                let item = "<div class='comment-item'> <div class='box-comment'><div class='box-image'> <img src='Assets/images/"+arr[1]+"' alt=''>  </div>  <div class='box-content-comment'> <h5> "+arr[0]+" </h5> <p>"+content+"</p> </div></div> </div>"
+                let item = "<div class='comment-item'> <div class='box-comment'><div class='box-image'> <img src='Assets/images/"+arr[1]+"' alt=''>  </div>  <div class='box-content-comment'> <h5> "+arr[0]+" </h5> <p>"+content+"</p> </div><button class='btn btn-danger reply-btn ' >Trả lời</button></div> <div class='list-reply' ></div> </div>"
 
                 comments.insertAdjacentHTML('afterbegin',item);
+                updateEventButton();
 
             });
 
@@ -47,7 +48,7 @@ document.addEventListener('DOMContentLoaded',function () {
         let comment_item = this.parentNode.parentNode;
 
         let box_reply = "<div class='box-reply'> <input type='text' class='form-control' id='reply-text'>\n" +
-            "            <button class='btn btn-danger'> <i class='fas fa-times'></i> <button class='btn btn-danger add-reply' >Reply</button>  </button> </div>";
+            "            <button class='btn btn-danger remove_reply'> <i class='fas fa-times'></i> <button class='btn btn-danger add-reply' >Phản hồi</button>  </button> </div>";
 
 
         comment_item.insertAdjacentHTML('beforeend',box_reply);
@@ -74,7 +75,7 @@ document.addEventListener('DOMContentLoaded',function () {
 
     function addReplyItem() {
 
-        let list_reply = document.getElementById('list-reply');
+        let list_reply = this.parentNode.parentNode.children[1];
 
         let box_reply = this.parentNode;
         let comment_id = list_reply.parentNode.dataset.commentid;
@@ -82,7 +83,7 @@ document.addEventListener('DOMContentLoaded',function () {
         let user_id =list_reply.parentNode.dataset.userid;
         let text = box_reply.children[0].value;
         let arr = getCookie();
-        let item =  "<div class='reply-item'> <div class='reply-image'> <img src='Assets/images/"+arr[1]+"' alt=''> </div> <div class='reply-content'> <h5>"+arr[0]+"</h5>  <p>"+ text +"</p></div> </div>"
+        let item =  "<div class='reply-item'> <div class='box-icon'> <i class='fas fa-level-down-alt'></i> </div> <div class='reply-image'> <img src='Assets/images/"+arr[1]+"' alt=''> </div> <div class='reply-content'> <h5>"+arr[0]+"</h5>  <p>"+ text +"</p></div> </div>"
 
         $.ajax({
             url:"http://localhost/web-tin-tuc/index.php?c=Post&a=addReplyComment",
@@ -95,13 +96,30 @@ document.addEventListener('DOMContentLoaded',function () {
 
 
 
+
     }
 
     function addEventButton() {
         let btns_add_reply = document.getElementsByClassName('add-reply');
+        let btns_remove_reply = document.getElementsByClassName('remove_reply');
         for (let i = 0 ; i < btns_add_reply.length ; i++){
             btns_add_reply[i].addEventListener('click',addReplyItem);
         }
+
+        for (let i = 0 ; i < btns_remove_reply.length;i++){
+            btns_remove_reply[i].addEventListener('click',removeBoxReply);
+        }
+    }
+
+    function updateEventButton() {
+        let btns_reply = document.getElementsByClassName('reply-btn');
+        for (let i = 0 ; i < btns_reply.length;i++){
+            btns_reply[i].addEventListener('click',createBoxReply);
+        }
+    }
+
+    function removeBoxReply() {
+        this.parentNode.remove();
     }
 
 

@@ -4,6 +4,7 @@ include_once SYSTEM_PATH."/Model/Post/PostModel.php";
 include_once SYSTEM_PATH."/Model/User/UserModel.php";
 include_once SYSTEM_PATH."/Model/PendingPost/PendingPostModel.php";
 include_once SYSTEM_PATH."/Model/User/UserRegisModel.php";
+include_once SYSTEM_PATH."/Model/Noti/NotiModel.php";
 class AdminController{
 
     public $categoryModel;
@@ -11,6 +12,7 @@ class AdminController{
     public $postModel;
     public $pendingPostModel;
     public $userRegisModel;
+    public $notiModel;
     public function __construct()
     {
         $this->categoryModel = new CategoryModel();
@@ -18,6 +20,7 @@ class AdminController{
         $this->postModel = new PostModel();
         $this->pendingPostModel= new PendingPostModel();
         $this->userRegisModel = new UserRegisModel();
+        $this->notiModel = new NotiModel();
 
     }
 
@@ -30,7 +33,15 @@ class AdminController{
         $mypost = $this->postModel->loadPostByUserId($id);
         $listUser = $this->userModel->getListUser();
         $listRegister = $this->userRegisModel->loadAllPendingRegis();
-        require_once SYSTEM_PATH."/View/admin.php";
+
+        if ($_COOKIE['role'] == "CREATOR"){
+//            header("location: http://localhost/web-tin-tuc/index.php?c=admin&v=my-post");
+            require_once SYSTEM_PATH."/View/admin.php";
+        }else{
+            require_once SYSTEM_PATH."/View/admin.php";
+        }
+
+
     }
 
     function addPendingPost(){
@@ -43,11 +54,19 @@ class AdminController{
         $intro = $_POST['intro'];
         $imageThumbnail= $_POST['imageThumbnail'];
         $this->pendingPostModel->add($title,$content,$categoryId,$slug,$userId,$intro,$imageThumbnail);
+
+        $user = $this->userModel->getUserById($userId);
+        $this->notiModel->addNoti("1","$user->username đã đăng một bài viết mới");
     }
 
     function addPost(){
         $listPost = $_POST['listPost'];
         $this->postModel->addPostFromListPendingPost($listPost);
+
+        for ($i = 0 ; $i < count($listPost);$i++){
+            $this->notiModel->addNoti($listPost[$i][5],"hoangvu đã phê duyệt bài viết của bạn");
+        }
+
         $this->pendingPostModel->removeListPendingPost($listPost);
     }
 
@@ -64,6 +83,10 @@ class AdminController{
     function deleteUserByUserId(){
         $id = $_POST['id'];
         $this->userModel->deleteUserByUserId($id);
+    }
+    function deleteRegisterById(){
+        $id = $_POST['id'];
+        $this->userRegisModel->deleteRegisterById($id);
     }
 
     function addUser(){

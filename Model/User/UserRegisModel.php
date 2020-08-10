@@ -23,7 +23,10 @@ class UserRegisModel extends BaseModel {
         }
         return $data;
     }
-
+    function deleteRegisterById($id){
+        $query = "delete from usersregis where id = '$id'";
+        parent::excuteQuery($query);
+    }
     function deleteRegister($listRegister){
         for ($i = 0 ; $i < count($listRegister); $i++){
             $id = $listRegister[$i][0];

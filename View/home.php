@@ -18,7 +18,7 @@
         </div>
         <div class="navbar-main" id="navbar-main">
             <div class="box-logo">
-                <i class="fas fa-gem"></i>
+                <a href="http://localhost/web-tin-tuc/index.php"><i class="fas fa-gem"></i></a>
             </div>
             <div class="navigation-bar">
                 <ul class="nav">
@@ -27,7 +27,7 @@
                         for ($i = 0 ; $i < count($data) ; $i++ ){
                             ?>
                             <li class="nav-item">
-                                <a href="" class="nav-link">
+                                <a href="http://localhost/web-tin-tuc/index.php?categoryid=<?=$data[$i]->id?>&categoryname=<?=$data[$i]->name?>" class="nav-link">
                                     <i class="<?=$data[$i]->icon?> icon"></i>
                                     <span><?=$data[$i]->name?></span>
 
@@ -74,9 +74,13 @@
                 if(isset($_COOKIE['name'])){
                     ?>
                     <div class="noti-box" id="noti-box">
-                        <div class="noti-item"></div>
-                        <div class="noti-item"></div>
-                        <div class="noti-item"></div>
+                        <?php
+                        for ($i = count($listNoti) - 1  ; $i >= 0 ; $i--){
+                            ?>
+                            <div class="noti-item"> <p><?= $listNoti[$i][1]?></p> </div>
+                            <?php
+                        }
+                        ?>
 
                     </div>
                     <div class="user-box " id="user-box">
@@ -102,6 +106,10 @@
                                 ?>
                                 <i class="fas fa-user-shield"></i>
                                 <?php
+                            }else if ($_COOKIE['role'] =="CREATOR"){
+                                ?>
+                                <i class="fas fa-user-cog"></i>
+                            <?php
                             }
                             ?>
                             <span>Quản lí trang</span>
@@ -174,21 +182,23 @@
                             <?php
                                 for ($i = 0 ; $i < count($listTrendingPost) ; $i++){
                                     ?>
-                                    <div class="top-post-item">
-                                        <div class="wrapp-image">
-                                            <span><?=$listTrendingPost[$i][11] ?></span>
-                                        </div>
-                                        <div class="post-item-content">
-                                             <span class="tag"><?=$listTrendingPost[$i][12]->name ?></span>
-                                            <h5 class="title" style="color: black"><?=$listTrendingPost[$i][2] ?></h5>
-                                            <div class="interactive">
-                                                <i class="far fa-heart"></i>
-                                                <i class="far fa-comment"></i>
-
+                                    <a href="http://localhost/web-tin-tuc/index.php?c=Post&a=viewPost&s=<?=$listTrendingPost[$i][6]?>">
+                                        <div class="top-post-item">
+                                            <div class="wrapp-image">
+                                                <span><?=$listTrendingPost[$i][11] ?></span>
                                             </div>
-                                        </div>
+                                            <div class="post-item-content">
+                                                <span class="tag"><?=$listTrendingPost[$i][12]->name ?></span>
+                                                <h5 class="title" style="color: black"><?=$listTrendingPost[$i][2] ?></h5>
+                                                <div class="interactive">
+                                                    <i class="far fa-heart"></i>
+                                                    <i class="far fa-comment"></i>
 
-                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </a>
                             <?php
                                 }
                             ?>
@@ -209,15 +219,19 @@
                 <?php
                     for ($i = 0 ; $i < count($listPPPost);$i++){
                         ?>
-                        <div class="popular-story-item popular1">
-                            <div class="wrapp-image">
-                               <span><?= $listPPPost[$i][11] ?></span>
+
+                            <div class="popular-story-item popular1">
+                                <a href="http://localhost/web-tin-tuc/index.php?c=Post&a=viewPost&s=<?=$listPPPost[$i][6]?>">
+                                <div class="wrapp-image">
+                                    <span><?= $listPPPost[$i][11] ?></span>
+                                </div>
+                                <div class="content">
+                                    <span class="tag"><?= $listPPPost[$i][12]->name ?></span>
+                                    <h5 class="title" style="color: black"><?= $listPPPost[$i][2] ?></h5>
+                                </div>
+                                </a>
                             </div>
-                            <div class="content">
-                                <span class="tag"><?= $listPPPost[$i][12]->name ?></span>
-                                <h5 class="title" style="color: black"><?= $listPPPost[$i][2] ?></h5>
-                            </div>
-                        </div>
+
                 <?php
                     }
                 ?>
@@ -233,17 +247,21 @@
             <div class="topic">Tài chính</div>
             <div class="business-content">
 
-                <div class="main">
-                    <?= $listBussinessPost[0][11]?>
-                    <div class="content">
-                        <span class="tag"><?= $listBussinessPost[0][12]->name?></span>
-                        <h5 class="title" style="color: #fff"><?= $listBussinessPost[0][2]?></h5>
+                <a href="http://localhost/web-tin-tuc/index.php?c=Post&a=viewPost&s=<?=$listBussinessPost[0][6]?>">
+                    <div class="main">
+                        <?= $listBussinessPost[0][11]?>
+                        <div class="content">
+                            <span class="tag"><?= $listBussinessPost[0][12]->name?></span>
+                            <h5 class="title" style="color: #fff"><?= $listBussinessPost[0][2]?></h5>
+                        </div>
                     </div>
-                </div>
+                </a>
                 <div class="sub">
                     <?php
                         for ($i = 1 ; $i < count($listBussinessPost) ; $i++){
                             ?>
+                        <a href="http://localhost/web-tin-tuc/index.php?c=Post&a=viewPost&s=<?=$listBussinessPost[$i][6]?>">
+
                             <div class="sub-item">
                                 <div class="wrapp-image">
                                     <?= $listBussinessPost[$i][11]?>
@@ -253,6 +271,7 @@
                                     <h5 class="title" style="font-size: 15px;margin-top: 10px"><?= $listBussinessPost[$i][2]?></h5>
                                 </div>
                             </div>
+                            </a>
                     <?php
                         }
 
@@ -279,6 +298,7 @@
                     <?php
                     for ($i = 1 ; $i < count($listSportPost) ; $i++){
                         ?>
+                        <a href="http://localhost/web-tin-tuc/index.php?c=Post&a=viewPost&s=<?=$listSportPost[$i][6]?>">
                         <div class="sub-item">
                             <div class="wrapp-image">
                                 <?= $listSportPost[$i][11]?>
@@ -288,6 +308,7 @@
                                 <h5 class="title" style="font-size: 15px;margin-top: 10px"><?= $listSportPost[$i][2]?></h5>
                             </div>
                         </div>
+                        </a>
                         <?php
                     }
 
@@ -311,6 +332,7 @@
                     <?php
                     for ($i = 1 ; $i < count($listEntertainPost) ; $i++){
                         ?>
+                        <a href="http://localhost/web-tin-tuc/index.php?c=Post&a=viewPost&s=<?=$listEntertainPost[$i][6]?>">
                         <div class="sub-item">
                             <div class="wrapp-image">
                                 <?= $listEntertainPost[$i][11]?>
@@ -320,6 +342,7 @@
                                 <h5 class="title" style="font-size: 15px;margin-top: 10px"><?= $listEntertainPost[$i][2]?> </h5>
                             </div>
                         </div>
+                        </a>
                         <?php
                     }
 
@@ -333,71 +356,27 @@
     </section>
     <section class="section2">
         <div class="custorm-post">
-            <div class="topic">Bài viết dành cho bạn</div>
+            <div class="topic">Bản tin COVID-19</div>
             <div class="custorm-post-content">
-                <div class="custorm-post-item">
-                    <div class="wrapp-image">
-                        <img src="Assets/images/popular1.jpg" alt="">
-                    </div>
-                    <div class="content">
-                        <span class="tag">the thao</span><span class="tag">the thao</span><span class="tag">the thao</span>
-                        <h5 class="title">Giá nhà ở HCM</h5>
-                    </div>
-                </div>
-                <div class="custorm-post-item">
-                    <div class="wrapp-image">
-                        <img src="Assets/images/popular1.jpg" alt="">
-                    </div>
-                    <div class="content">
-                        <span class="tag">the thao</span><span class="tag">the thao</span><span class="tag">the thao</span>
-                        <h5 class="title">Giá nhà ở HCM</h5>
-                    </div>
-                </div>
-                <div class="custorm-post-item">
-                    <div class="wrapp-image">
-                        <img src="Assets/images/popular1.jpg" alt="">
-                    </div>
-                    <div class="content">
-                        <span class="tag">the thao</span><span class="tag">the thao</span><span class="tag">the thao</span>
-                        <h5 class="title">Giá nhà ở HCM</h5>
-                    </div>
-                </div>
-                <div class="custorm-post-item">
-                    <div class="wrapp-image">
-                        <img src="Assets/images/popular1.jpg" alt="">
-                    </div>
-                    <div class="content">
-                        <span class="tag">the thao</span><span class="tag">the thao</span><span class="tag">the thao</span>
-                        <h5 class="title">Giá nhà ở HCM</h5>
-                    </div>
-                </div>
-                <div class="custorm-post-item">
-                    <div class="wrapp-image">
-                        <img src="Assets/images/popular1.jpg" alt="">
-                    </div>
-                    <div class="content">
-                        <span class="tag">the thao</span><span class="tag">the thao</span><span class="tag">the thao</span>
-                        <h5 class="title">Giá nhà ở HCM</h5>
-                    </div>
-                </div>
-                <div class="custorm-post-item">
-                    <div class="wrapp-image">
-                        <img src="Assets/images/popular1.jpg" alt="">
-                    </div>
-                    <div class="content">
-                        <span class="tag">the thao</span><span class="tag">the thao</span><span class="tag">the thao</span>
-                        <h5 class="title">Giá nhà ở HCM</h5>
-                    </div>
-                </div>
-                <div class="custorm-post-item">
-                    <div class="wrapp-image">
-                        <img src="Assets/images/popular1.jpg" alt="">
-                    </div>
-                    <div class="content">
-                        <span class="tag">the thao</span><span class="tag">the thao</span><span class="tag">the thao</span>
-                        <h5 class="title">Giá nhà ở HCM</h5>
-                    </div>
-                </div>
+                <?php
+                    for ($i = 0 ; $i < count($listCovid19Post);$i++){
+                        ?>
+                        <a href="http://localhost/web-tin-tuc/index.php?c=Post&a=viewPost&s=<?=$listCovid19Post[$i][6]?>">
+                            <div class="custorm-post-item">
+                                <div class="wrapp-image">
+                                    <?=$listCovid19Post[$i][11]?>
+                                </div>
+                                <div class="content">
+                                    <span class="tag" style="color: #fff"><?=$listCovid19Post[$i][12]->name?></span>
+                                    <h5 class="title" style="color: black"><?=$listCovid19Post[$i][2]?></h5>
+                                </div>
+                            </div>
+                        </a>
+                <?php
+                    }
+                ?>
+
+
 
             </div>
         </div>

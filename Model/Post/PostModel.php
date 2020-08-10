@@ -20,8 +20,15 @@ class PostModel extends BaseModel {
 
     }
 
-    function loadPostByPostId($slug){
+    function loadPostBySlug($slug){
         $query = "select * from posts where slug = '$slug'";
+        $result = parent::excuteQuery($query);
+        $post = $result->fetch_object();
+        return $post;
+    }
+
+    function loadPostByPostid($postid){
+        $query = "select * from posts where id = '$postid'";
         $result = parent::excuteQuery($query);
         $post = $result->fetch_object();
         return $post;
@@ -153,6 +160,21 @@ class PostModel extends BaseModel {
         return $data;
     }
 
+    function loadListCovid19Post(){
+        $query = "select * from posts where category_id='12'";
+        $result = parent::excuteQuery($query);
+        $data = [];
+        $categoryModel = new CategoryModel();
+
+        foreach ($result->fetch_all() as $item){
+            $category = $categoryModel->getCategoryById($item[1]);
+            array_push($item,$category);
+            array_push($data,$item);
+
+        }
+        return $data;
+    }
+
     function getListTitle(){
         $query = "select * from posts";
         $result = parent::excuteQuery($query);
@@ -218,6 +240,33 @@ class PostModel extends BaseModel {
         }
         return $data;
 
+    }
+
+    function getCommentByCommentId($commentid){
+        $query = "select * from comments where id = '$commentid'";
+        $result = parent::excuteQuery($query);
+        $comment = $result->fetch_object();
+        return $comment;
+    }
+
+    function updateView($postid){
+        $query = "update posts p set count_view = p.count_view+1 where id='$postid'";
+        parent::excuteQuery($query);
+    }
+
+    function updateComment($postid){
+        $query = "update posts p set count_comment = p.count_comment+1 where id='$postid'";
+        parent::excuteQuery($query);
+    }
+
+    function getListPostByCategoryId($categoryId){
+        $query = "select * from posts where category_id = '$categoryId'";
+        $result = parent::excuteQuery($query);
+        $data = [];
+        foreach ($result->fetch_all() as $item){
+            array_push($data,$item);
+        }
+        return $data;
     }
 
 

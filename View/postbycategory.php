@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="Assets/css/bootstrap.min.css" >
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="Assets/css/viewpost.css">
+    <link rel="stylesheet" type="text/css" href="Assets/css/postbycategory.css">
     <title>Document</title>
 </head>
 <body>
@@ -17,9 +17,7 @@
     </div>
     <div class="navbar-main" id="navbar-main">
         <div class="box-logo">
-            <a href="http://localhost/web-tin-tuc/index.php" class="box-logo">
-                <i class="fas fa-gem"></i>
-            </a>
+            <a href="http://localhost/web-tin-tuc/index.php"><i class="fas fa-gem"></i></a>
         </div>
         <div class="navigation-bar">
             <ul class="nav">
@@ -76,11 +74,11 @@
             ?>
             <div class="noti-box" id="noti-box">
                 <?php
-                    for ($i = count($listNoti) - 1  ; $i >= 0 ; $i--){
-                        ?>
-                        <div class="noti-item"> <p><?= $listNoti[$i][1]?></p> </div>
-                <?php
-                    }
+                for ($i = count($listNoti) - 1  ; $i >= 0 ; $i--){
+                    ?>
+                    <div class="noti-item"> <p><?= $listNoti[$i][1]?></p> </div>
+                    <?php
+                }
                 ?>
 
             </div>
@@ -151,95 +149,69 @@
 
 </div>
 
-    <section>
-        <div class="post-content">
-            <div class="post-head">
-                <h3 class="post-title">
-                    <?=$post->title?>
+<section>
+        <div class="list-post">
+            <div class="category"><h5>Bài viết theo danh mục : <?=$categoryname?></h5></div>
+            <div class="grid-container">
 
-                </h3>
+                <?php
+                    for ($i = 0 ; $i < count($listPostByCategoryId);$i++){
+                        ?>
+                        <div class="grid-item">
+                            <a href="http://localhost/web-tin-tuc/index.php?c=Post&a=viewPost&s=<?=$listPostByCategoryId[$i][6]?>">
 
-                <h5 class="author"><a href=""><?=$user->username?></a></h5>
-                <span> <i class="fas fa-eye"></i> <?=$post->count_view?></span>
 
-            </div>
-            <div class="post-body">
-                <h5 class="intro"><?=$post->intro?></h5>
-                <?=$post->content?>
-            </div>
-            <div class="comment">
-                <div class="comment-head">
-                    <h4>comment</h4>
-                </div>
-                <div class="comment-body">
-                    <?php
-                        if (!isset($_COOKIE['id'])){
-                            ?>
-                            <input type="text"  class="form-control" id="name" placeholder="Nhập tên...">
+                                    <div class="list-post-item">
 
-                    <?php
-                        }
-                    ?>
-                    <textarea name="" data-postid ="<?=$post->id?>"  data-userid="<?= (isset($_COOKIE['id'])) ? $_COOKIE['id'] : 0 ?>" id="comment-text" ></textarea>
-                    <button class="btn btn-danger" id="comment-btn">Post Comment</button>
-                </div>
-                <div class="list-comment" id="list-comment">
+                                        <div class="image-thumbnail">
+                                            <span><?= $listPostByCategoryId[$i][11] ?></span>
+                                        </div>
+                                        <div class="post-detail">
+                                            <h5 class="title-post"><?= $listPostByCategoryId[$i][2] ?></h5>
+                                            <p class="intro-post"><?= $listPostByCategoryId[$i][3] ?>...</p>
 
-                    <?php
-                        for ($i=count($listComment) - 1 ; $i >= 0 ; $i--){
-                            ?>
-                            <div class="comment-item" data-commentid="<?=$listComment[$i][0]?>" data-userid="<?= (isset($_COOKIE['id'])) ? $_COOKIE['id'] : 0 ?>" data-postid="<?=$post->id?>" >
-                                <div class="box-comment">
-                                    <div class="box-image">
-                                        <img src="Assets/images/<?=$listComment[$i][5]->avatar?>" alt="">
-                                    </div>
-                                    <div class="box-content-comment">
-                                        <h5><?=$listComment[$i][4]?></h5>
-                                        <p><?=$listComment[$i][3]?></p>
-                                    </div>
-                                    <button class="btn btn-danger reply-btn " id="">Trả lời</button>
+                                        </div>
+                                        <div class="reaction">
+                                            <div class="reaction-item" style="justify-content: normal;width: 40%">
 
-                                </div>
-                                <div class="list-reply" id="list-reply">
-                                    <?php
-                                        $listReplay = $listComment[$i][6];
-                                        for ($j = 0 ; $j < count($listReplay) ; $j++){
-                                            ?>
-                                            <div class="reply-item">
-                                                <div class="box-icon"><i class="fas fa-level-down-alt"></i></div>
-                                                <div class="reply-image">
-                                                    <img src="Assets/images/<?= $listReplay[$j][6]->avatar ?>" alt="">
-                                                </div>
-                                                <div class="reply-content">
-                                                    <h5><?= $listReplay[$j][3]?></h5>
-                                                    <p><?= $listReplay[$j][1]?></p>
-                                                </div>
                                             </div>
-                                    <?php
-                                        }
-                                    ?>
-                                </div>
-                            </div>
+                                            <div class="reaction-item" style="width: 20%">
+                                                <span><i class="fas fa-eye"></i><?= $listPostByCategoryId[$i][9] ?></span>
+                                            </div>
+                                            <div class="reaction-item" style="width: 20%">
+                                                <span><i class="far fa-heart"></i><?= $listPostByCategoryId[$i][10] ?></span>
+                                            </div>
+                                            <div class="reaction-item" style="width: 20%">
+                                                <span><i class="far fa-comment"></i><?= $listPostByCategoryId[$i][5] ?></span>
+                                            </div>
 
-                    <?php
-                        }
 
-                    ?>
 
-                </div>
+
+                                        </div>
+                                    </div>
+
+
+
+                            </a>
+                        </div>
+                <?php
+                    }
+
+                ?>
+
             </div>
-
         </div>
-    </section>
+</section>
 
 
 
 
 
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="Assets/js/bootstrap.min.js"></script>
-    <script src="Assets/js/home.js"></script>
-    <script src="Assets/js/viewpost.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="Assets/js/bootstrap.min.js"></script>
+<script src="Assets/js/home.js"></script>
+
 
 </body>
 </html>

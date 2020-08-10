@@ -22,55 +22,7 @@
 
             <div class="navigation-bar">
                 <ul class="nav-menu nav">
-                    <li class="nav-item">
-                        <a  href="http://localhost/web-tin-tuc/index.php?c=admin&v=home" class="nav-link" >
-                            <i class="fas fa-home icon"></i>
-                            <span class="text">Trang chủ</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="http://localhost/web-tin-tuc/index.php?c=admin&v=edit-profile" class="nav-link" >
-                            <i class="fas fa-user-edit icon"></i>
-                            <span class="text">Chỉnh sửa thông tin</span>
-                        </a>
-                    </li>
 
-                    <li class="nav-item">
-                        <a href="http://localhost/web-tin-tuc/index.php?c=admin&v=my-post"  class="nav-link" id="">
-                            <i class="fas fa-address-card icon"></i>
-                            <span class="text">Bài viết của bạn</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="http://localhost/web-tin-tuc/index.php?c=admin&v=add-post"  class="nav-link" id="">
-                            <i class="fas fa-pen-alt icon"></i>
-                            <span class="text">Thêm bài viết</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a  href="http://localhost/web-tin-tuc/index.php?c=admin&v=pending-post" class="nav-link" id="">
-                            <i class="fas fa-business-time icon"></i>
-                            <span class="text">Bài viết chờ phê duyệt</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="http://localhost/web-tin-tuc/index.php?c=admin&v=list-post" class="nav-link" id="">
-                            <i class="fas fa-list-alt icon "></i>
-                            <span class="text">Danh sách bài viết</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="http://localhost/web-tin-tuc/index.php?c=admin&v=user" class="nav-link" id="">
-                            <i class="fas fa-users icon" ></i>
-                            <span class="text">Thành viên</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="http://localhost/web-tin-tuc/index.php?c=admin&v=pending-regis" class="nav-link" id="">
-                            <i class="fas fa-user-plus icon"></i>
-                            <span class="text">Yêu cầu đăng kí</span>
-                        </a>
-                    </li>
 <!--                    <li class="nav-item">-->
 <!--                        <a href="http://localhost/web-tin-tuc/index.php?c=admin&v=pending-comment" class="nav-link" id="">-->
 <!--                            <i class="fas fa-comments icon"></i>-->
@@ -78,6 +30,88 @@
 <!--                        </a>-->
 <!--                    </li>-->
 
+
+                <?php
+                    if ($_COOKIE['role'] == "ADMIN"){
+                        ?>
+                        <li class="nav-item">
+                            <a  href="http://localhost/web-tin-tuc/index.php?c=admin&v=home" class="nav-link" >
+                                <i class="fas fa-home icon"></i>
+                                <span class="text">Trang chủ</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="http://localhost/web-tin-tuc/index.php?c=admin&v=edit-profile" class="nav-link" >
+                                <i class="fas fa-user-edit icon"></i>
+                                <span class="text">Chỉnh sửa thông tin</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="http://localhost/web-tin-tuc/index.php?c=admin&v=my-post"  class="nav-link" id="">
+                                <i class="fas fa-address-card icon"></i>
+                                <span class="text">Bài viết của bạn</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="http://localhost/web-tin-tuc/index.php?c=admin&v=add-post"  class="nav-link" id="">
+                                <i class="fas fa-pen-alt icon"></i>
+                                <span class="text">Thêm bài viết</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a  href="http://localhost/web-tin-tuc/index.php?c=admin&v=pending-post" class="nav-link" id="">
+                                <i class="fas fa-business-time icon"></i>
+                                <span class="text">Bài viết chờ phê duyệt</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="http://localhost/web-tin-tuc/index.php?c=admin&v=list-post" class="nav-link" id="">
+                                <i class="fas fa-list-alt icon "></i>
+                                <span class="text">Danh sách bài viết</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="http://localhost/web-tin-tuc/index.php?c=admin&v=user" class="nav-link" id="">
+                                <i class="fas fa-users icon" ></i>
+                                <span class="text">Thành viên</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="http://localhost/web-tin-tuc/index.php?c=admin&v=pending-regis" class="nav-link" id="">
+                                <i class="fas fa-user-plus icon"></i>
+                                <span class="text">Yêu cầu đăng kí</span>
+                            </a>
+                        </li>
+                    <?php
+                    }else {
+                       ?>
+                        <li class="nav-item">
+                            <a href="http://localhost/web-tin-tuc/index.php?c=admin&v=edit-profile" class="nav-link" >
+                                <i class="fas fa-user-edit icon"></i>
+                                <span class="text">Chỉnh sửa thông tin</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="http://localhost/web-tin-tuc/index.php?c=admin&v=my-post"  class="nav-link" id="">
+                                <i class="fas fa-address-card icon"></i>
+                                <span class="text">Bài viết của bạn</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="http://localhost/web-tin-tuc/index.php?c=admin&v=add-post"  class="nav-link" id="">
+                                <i class="fas fa-pen-alt icon"></i>
+                                <span class="text">Thêm bài viết</span>
+                            </a>
+                        </li>
+
+
+
+                    <?php
+                    }
+
+                ?>
 
 
                 </ul>
@@ -461,7 +495,7 @@
                                         </select>
                                     </td>
                                     <td>Đang chờ phê duyệt</td>
-                                    <td><i data-userid="<?= $listUser[$i][0]?>" class="fas fa-trash-alt remove-register"></i></td>
+                                    <td><i data-registerid="<?= $listRegister[$i][0]?>" class="fas fa-trash-alt remove-register"></i></td>
                                     <td><input type="checkbox" class="form-control register-checkbox"> </td>
                                 </tr>
                                 <?php

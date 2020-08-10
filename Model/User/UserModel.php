@@ -86,7 +86,7 @@ class UserModel extends BaseModel {
         return $data;
     }
     function deleteUserByUserId($id){
-        $query = "delete from users wher id = '$id'";
+        $query = "delete from users where id = '$id'";
         parent::excuteQuery($query);
     }
 
@@ -100,4 +100,6 @@ class UserModel extends BaseModel {
             parent::excuteQuery($query);
         }
     }
+
+
 }
