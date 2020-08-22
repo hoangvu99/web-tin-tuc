@@ -51,6 +51,15 @@ class PendingPostModel extends BaseModel {
 
     }
 
+    function countPendingPost(){
+        
+        $query = "select count(id) from pending_post";
+
+        $count = parent::excuteQuery($query);
+
+        return $count->fetch_all()[0][0];
+    }
+
 
 }
 

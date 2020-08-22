@@ -18,7 +18,12 @@ class HomeController{
     }
 
     function home(){
-        $id = $_COOKIE['id'];
+        $id = 0 ;
+
+        if(isset($_COOKIE['id'])){
+            $id = $_COOKIE['id'];
+        }
+
         $listNoti = $this->notiModel->getListNotiByUserId($id);
         $data= $this->categoryModel->getAllCategory();
         if (isset($_GET['categoryid'])){

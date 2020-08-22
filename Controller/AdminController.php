@@ -34,6 +34,14 @@ class AdminController{
         $listUser = $this->userModel->getListUser();
         $listRegister = $this->userRegisModel->loadAllPendingRegis();
 
+        $countUser = $this->userModel->countUser();
+        $countPost = $this->postModel->countPost();
+        $countPendingPost = $this->pendingPostModel-> countPendingPost();
+        $countRegister =   $this->userRegisModel->countRegister();
+        
+        
+       
+
         if ($_COOKIE['role'] == "CREATOR"){
 //            header("location: http://localhost/web-tin-tuc/index.php?c=admin&v=my-post");
             require_once SYSTEM_PATH."/View/admin.php";

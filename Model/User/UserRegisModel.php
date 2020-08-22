@@ -35,4 +35,12 @@ class UserRegisModel extends BaseModel {
         }
     }
 
+    function countRegister(){
+        $query = "select count(id) from usersregis";
+
+        $count = parent::excuteQuery($query);
+
+        return $count->fetch_all()[0][0];
+    }
+
 }

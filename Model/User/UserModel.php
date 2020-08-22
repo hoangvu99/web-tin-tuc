@@ -101,5 +101,12 @@ class UserModel extends BaseModel {
         }
     }
 
+    function countUser(){
+        $query = "select count(id) from users";
+        $count = parent::excuteQuery($query);
+
+        return $count->fetch_all()[0][0];
+    }
+
 
 }

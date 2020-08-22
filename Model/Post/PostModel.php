@@ -27,6 +27,13 @@ class PostModel extends BaseModel {
         return $post;
     }
 
+    function countPost(){
+        $query = "select count(id) from posts";
+        $result = parent::excuteQuery($query);
+        $countPost = $result->fetch_all()[0][0];
+        return $countPost;
+    }
+
     function loadPostByPostid($postid){
         $query = "select * from posts where id = '$postid'";
         $result = parent::excuteQuery($query);

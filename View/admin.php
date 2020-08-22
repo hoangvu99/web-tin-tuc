@@ -129,24 +129,21 @@
                    <div class="box-noti">
                        <div class="box-noti-item">
                            <p>Số lượng thành viên</p>
-                           <span>1</span>
+                           <span> <?= $countUser?> </span>
                        </div>
                        <div class="box-noti-item">
                            <p>Số lượng bài viết</p>
-                           <span>1</span>
+                           <span><?= $countPost?></span>
                        </div>
                        <div class="box-noti-item">
                            <p>Bài viết cần duyệt</p>
-                           <span>1</span>
+                           <span><?= $countPendingPost?></span>
                        </div>
                        <div class="box-noti-item">
                            <p>Thành viên cần phê duyệt</p>
-                           <span>1</span>
+                           <span><?= $countRegister?></span>
                        </div>
-                       <div class="box-noti-item">
-                           <p>Bình luận cần phê duyệt</p>
-                           <span>1</span>
-                       </div>
+                       
                    </div>
 
                 </div>
