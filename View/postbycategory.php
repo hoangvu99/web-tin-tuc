@@ -103,11 +103,21 @@
                 <?php
                 if ($_COOKIE['role'] =="ADMIN"){
                     ?>
-                    <i class="fas fa-user-shield"></i>
+                      <a  class="user-item" href="http://localhost/web-tin-tuc/index.php?c=admin">
+
+                      <i class="fas fa-user-shield"></i>
+                        <span>Quản lí trang</span>
+                        </a>
+                      
                     <?php
                 }else if ($_COOKIE['role'] =="CREATOR"){
                     ?>
+                    <a  class="user-item" href="http://localhost/web-tin-tuc/index.php?c=admin">
+
                     <i class="fas fa-user-cog"></i>
+                        <span>Quản lí trang</span>
+                        </a>
+                    
                     <?php
                 }
                 ?>
